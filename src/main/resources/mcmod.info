@@ -1,0 +1,18 @@
+[
+    {
+        "modid": "${modId}",
+        "name": "${modName}",
+        "description": "Cancels the rendering of hidden leaf sides, similar to OptiFine's Smart Leaves option.",
+        "version": "${modVersion}",
+        "mcversion": "${minecraftVersion}",
+        "url": "https://github.com/basdxz/LeafCulling",
+        "updateUrl": "",
+        "authorList": [
+            "basdxz"
+        ],
+        "credits": "",
+        "logoFile": "",
+        "screenshots": [],
+        "dependencies": []
+    }
+]
