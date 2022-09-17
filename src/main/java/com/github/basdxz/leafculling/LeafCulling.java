@@ -11,9 +11,8 @@ import org.spongepowered.asm.mixin.injection.callback.*;
 import static com.github.basdxz.leafculling.Tags.*;
 import static net.minecraftforge.common.util.ForgeDirection.getOrientation;
 
-//,
-//     dependencies = DEPENDENCIES
-@Mod(modid = MODID, version = VERSION, name = MODNAME, acceptedMinecraftVersions = "[1.7.10]")
+@Mod(modid = MODID, version = VERSION, name = MODNAME, acceptedMinecraftVersions = MINECRAFT_VERSION,
+     dependencies = DEPENDENCIES)
 public class LeafCulling {
     public static final int LEAF_DECAY_METADATA_MASK = 0xc;
 
