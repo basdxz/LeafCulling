@@ -20,6 +20,7 @@ public enum Mixin implements IMixin {
     BlockLeavesBaseHideSideAdjacentToEqualMixin(CLIENT, always(), "minecraft.BlockLeavesBaseHideSideAdjacentToEqualMixin"),
     BlockBOPLeavesHideSideAdjacentToEqualMixin(CLIENT, always(), "bop.BlockBOPLeavesHideSideAdjacentToEqualMixin"),
     BlockLeafHideSideAdjacentToEqualMixin(CLIENT, always(), "chisel.BlockLeafHideSideAdjacentToEqualMixin"),
+    BlockForestryLeavesHideSideAdjacentToEqualMixin(CLIENT, always(), "forestry.BlockForestryLeavesHideSideAdjacentToEqualMixin"),
 
     ;
 

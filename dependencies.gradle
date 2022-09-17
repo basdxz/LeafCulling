@@ -20,7 +20,10 @@ dependencies {
     compile("com.github.GTMEGA:Chisel:2.9.16-GTMEGA:dev") {
         transitive = false
     }
-
     //Biomes O' Plenty 2.1.0.2308
     compile(deobfCurse("biomesoplenty-220318:2499612"))
+    //Witchery 0.24.1
+//    compile(deobfCurse("witchery-69673:2234410"))
+    //Forestry 4.2.16
+    compile(deobfCurse("forestry-59751:2333823"))
 }
