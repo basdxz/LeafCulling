@@ -52,11 +52,6 @@ public class LeafCulling {
             thisBlockMetadata &= ~LEAF_DECAY_METADATA_MASK;
             otherBlockMetadata &= ~LEAF_DECAY_METADATA_MASK;
         }
-
-        if (thisBlockMetadata != otherBlockMetadata) {
-            System.out.println(thisBlockMetadata);
-            System.out.println(otherBlockMetadata);
-        }
         return thisBlockMetadata == otherBlockMetadata;
     }
 
