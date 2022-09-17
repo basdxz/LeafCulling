@@ -2,6 +2,15 @@
 
 repositories {
     maven {
-        url = "https://maven.falsepattern.com/"
+        name = "jitpack"
+        url = "https://mvn.falsepattern.com/jitpack/"
+    }
+    maven {
+        name = "mavenpattern"
+        url = "https://mvn.falsepattern.com/releases/"
+    }
+    maven {
+        name = "gtmega"
+        url = "https://mvn.falsepattern.com/gtmega_releases/"
     }
 }
