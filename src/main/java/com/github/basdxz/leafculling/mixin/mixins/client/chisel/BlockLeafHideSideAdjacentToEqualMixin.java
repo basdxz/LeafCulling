@@ -1,11 +1,10 @@
 package com.github.basdxz.leafculling.mixin.mixins.client.chisel;
 
+import com.github.basdxz.leafculling.LeafCulling;
 import net.minecraft.world.IBlockAccess;
 import org.spongepowered.asm.mixin.*;
 import team.chisel.block.BlockCarvable;
 import team.chisel.block.BlockLeaf;
-
-import static com.github.basdxz.leafculling.LeafCulling.isBlockAtSideEqual;
 
 @Mixin(BlockLeaf.class)
 public abstract class BlockLeafHideSideAdjacentToEqualMixin extends BlockCarvable {
@@ -15,6 +14,6 @@ public abstract class BlockLeafHideSideAdjacentToEqualMixin extends BlockCarvabl
                                         int otherYPos,
                                         int otherZPos,
                                         int side) {
-        return !isBlockAtSideEqual(blockAccess, otherXPos, otherYPos, otherZPos, side);
+        return !LeafCulling.isBlockAtSideSameLeaf(blockAccess, otherXPos, otherYPos, otherZPos, side);
     }
 }

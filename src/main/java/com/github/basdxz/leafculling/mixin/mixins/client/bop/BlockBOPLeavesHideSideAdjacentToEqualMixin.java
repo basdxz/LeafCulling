@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
 
-import static com.github.basdxz.leafculling.LeafCulling.handleHidingSidesAdjacentToEqualBlock;
+import static com.github.basdxz.leafculling.LeafCulling.handleHidingSidesAdjacentEqualLeaves;
 
 @Mixin(BlockBOPLeaves.class)
 public abstract class BlockBOPLeavesHideSideAdjacentToEqualMixin extends BlockLeavesBase implements IShearable {
@@ -27,6 +27,6 @@ public abstract class BlockBOPLeavesHideSideAdjacentToEqualMixin extends BlockLe
                                                int otherZPos,
                                                int side,
                                                CallbackInfoReturnable<Boolean> cir) {
-        handleHidingSidesAdjacentToEqualBlock(blockAccess, otherXPos, otherYPos, otherZPos, side, cir);
+        handleHidingSidesAdjacentEqualLeaves(blockAccess, otherXPos, otherYPos, otherZPos, side, cir);
     }
 }

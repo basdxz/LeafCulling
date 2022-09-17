@@ -13,7 +13,11 @@ import static com.falsepattern.lib.mixin.ITargetedMod.PredicateHelpers.startsWit
 @Getter
 @RequiredArgsConstructor
 public enum TargetedMod implements ITargetedMod {
-    OPTIFINE("OptiFine", false, startsWith("optifine"));
+    CHISEL("Chisel", false, startsWith("chisel")),
+    BIOMESOPLENTY("Biomes O' Plenty", false, startsWith("biomesoplenty")),
+    FORESTRY("Forestry", false, startsWith("forestry")),
+
+    ;
 
     private final String modName;
     private final boolean loadInDevelopment;

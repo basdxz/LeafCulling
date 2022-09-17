@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
 
-import static com.github.basdxz.leafculling.LeafCulling.handleHidingSidesAdjacentToEqualBlock;
+import static com.github.basdxz.leafculling.LeafCulling.handleHidingSidesAdjacentEqualLeaves;
 
 @Mixin(BlockForestryLeaves.class)
 public abstract class BlockForestryLeavesHideSideAdjacentToEqualMixin extends BlockNewLeaf implements ITileEntityProvider, IGrowable {
@@ -23,6 +23,6 @@ public abstract class BlockForestryLeavesHideSideAdjacentToEqualMixin extends Bl
                                                int otherZPos,
                                                int side,
                                                CallbackInfoReturnable<Boolean> cir) {
-        handleHidingSidesAdjacentToEqualBlock(blockAccess, otherXPos, otherYPos, otherZPos, side, cir);
+        handleHidingSidesAdjacentEqualLeaves(blockAccess, otherXPos, otherYPos, otherZPos, side, cir);
     }
 }

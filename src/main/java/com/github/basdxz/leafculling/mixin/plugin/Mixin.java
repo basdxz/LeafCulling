@@ -8,7 +8,9 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import static com.falsepattern.lib.mixin.IMixin.PredicateHelpers.always;
+import static com.falsepattern.lib.mixin.IMixin.PredicateHelpers.require;
 import static com.falsepattern.lib.mixin.IMixin.Side.CLIENT;
+import static com.github.basdxz.leafculling.mixin.plugin.TargetedMod.*;
 
 
 @Getter
@@ -18,10 +20,18 @@ public enum Mixin implements IMixin {
      * Always required Mixins.
      */
     BlockLeavesBaseHideSideAdjacentToEqualMixin(CLIENT, always(), "minecraft.BlockLeavesBaseHideSideAdjacentToEqualMixin"),
-    BlockBOPLeavesHideSideAdjacentToEqualMixin(CLIENT, always(), "bop.BlockBOPLeavesHideSideAdjacentToEqualMixin"),
-    BlockLeafHideSideAdjacentToEqualMixin(CLIENT, always(), "chisel.BlockLeafHideSideAdjacentToEqualMixin"),
-    BlockForestryLeavesHideSideAdjacentToEqualMixin(CLIENT, always(), "forestry.BlockForestryLeavesHideSideAdjacentToEqualMixin"),
-
+    /**
+     * Chisel Mixins.
+     */
+    BlockLeafHideSideAdjacentToEqualMixin(CLIENT, require(CHISEL), "chisel.BlockLeafHideSideAdjacentToEqualMixin"),
+    /**
+     * Biomes O' Plenty Mixins.
+     */
+    BlockBOPLeavesHideSideAdjacentToEqualMixin(CLIENT, require(BIOMESOPLENTY), "bop.BlockBOPLeavesHideSideAdjacentToEqualMixin"),
+    /**
+     * Forestry Mixins.
+     */
+    BlockForestryLeavesHideSideAdjacentToEqualMixin(CLIENT, require(FORESTRY), "forestry.BlockForestryLeavesHideSideAdjacentToEqualMixin"),
     ;
 
     private final Side side;
