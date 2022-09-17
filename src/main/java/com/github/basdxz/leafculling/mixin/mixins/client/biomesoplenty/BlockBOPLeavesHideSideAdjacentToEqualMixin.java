@@ -1,6 +1,9 @@
 package com.github.basdxz.leafculling.mixin.mixins.client.biomesoplenty;
 
+import biomesoplenty.common.blocks.BlockBOPAppleLeaves;
+import biomesoplenty.common.blocks.BlockBOPColorizedLeaves;
 import biomesoplenty.common.blocks.BlockBOPLeaves;
+import biomesoplenty.common.blocks.BlockBOPPersimmonLeaves;
 import net.minecraft.block.BlockLeavesBase;
 import net.minecraft.block.material.Material;
 import net.minecraft.world.IBlockAccess;
@@ -11,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.*;
 
 import static com.github.basdxz.leafculling.LeafCulling.handleHidingSidesAdjacentEqualLeaves;
 
-@Mixin(BlockBOPLeaves.class)
+@Mixin({BlockBOPLeaves.class, BlockBOPAppleLeaves.class, BlockBOPColorizedLeaves.class, BlockBOPPersimmonLeaves.class})
 public abstract class BlockBOPLeavesHideSideAdjacentToEqualMixin extends BlockLeavesBase implements IShearable {
     protected BlockBOPLeavesHideSideAdjacentToEqualMixin(Material material, boolean flag) {
         super(material, flag);
