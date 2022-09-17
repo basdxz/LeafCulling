@@ -1,6 +1,5 @@
 package com.github.basdxz.leafculling.mixin.mixins.client.aether;
 
-import com.gildedgames.the_aether.blocks.natural.BlockAetherLeaves;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.world.IBlockAccess;
 import org.spongepowered.asm.mixin.*;
@@ -9,7 +8,8 @@ import org.spongepowered.asm.mixin.injection.callback.*;
 
 import static com.github.basdxz.leafculling.LeafCulling.handleHidingSidesAdjacentEqualLeaves;
 
-@Mixin(BlockAetherLeaves.class)
+@Mixin({com.gildedgames.the_aether.blocks.natural.BlockAetherLeaves.class,
+        net.aetherteam.aether.blocks.natural.BlockAetherLeaves.class})
 public abstract class BlockAetherLeavesHideSideAdjacentToEqualMixin extends BlockLeaves {
     @Inject(method = "shouldSideBeRendered(Lnet/minecraft/world/IBlockAccess;IIII)Z",
             at = @At(value = "HEAD"),
