@@ -1,17 +1,16 @@
-package com.github.basdxz.leafculling.mixin.mixins.client.minefactoryreloaded;
+package com.github.basdxz.leafculling.mixin.mixins.client.aether;
 
+import com.gildedgames.the_aether.blocks.natural.BlockAetherLeaves;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.world.IBlockAccess;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
-import powercrystals.minefactoryreloaded.api.rednet.connectivity.IRedNetNoConnection;
-import powercrystals.minefactoryreloaded.block.BlockRubberLeaves;
 
 import static com.github.basdxz.leafculling.LeafCulling.handleHidingSidesAdjacentEqualLeaves;
 
-@Mixin(BlockRubberLeaves.class)
-public abstract class BlockRubberLeavesHideSideAdjacentToEqualMixin extends BlockLeaves implements IRedNetNoConnection {
+@Mixin(BlockAetherLeaves.class)
+public abstract class BlockAetherLeavesHideSideAdjacentToEqualMixin extends BlockLeaves {
     @Inject(method = "shouldSideBeRendered(Lnet/minecraft/world/IBlockAccess;IIII)Z",
             at = @At(value = "HEAD"),
             cancellable = true,

@@ -36,6 +36,10 @@ public enum Mixin implements IMixin {
      * Minefactory Reloaded Mixins.
      */
     BlockRubberLeavesHideSideAdjacentToEqualMixin(CLIENT, require(MINEFACTORY_RELOADED), "minefactoryreloaded.BlockRubberLeavesHideSideAdjacentToEqualMixin"),
+    /**
+     * The Aether Mixins.
+     */
+    BlockAetherLeavesHideSideAdjacentToEqualMixin(CLIENT, require(AETHER), "aether.BlockAetherLeavesHideSideAdjacentToEqualMixin"),
     ;
 
     private final Side side;
