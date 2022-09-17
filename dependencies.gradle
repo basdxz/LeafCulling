@@ -1,8 +1,26 @@
-// Add your dependencies here
+static def curse(curseDep) {
+    return "curse.maven:" + curseDep
+}
+
+def deobfCurse(curseDep) {
+    try {
+        return deobfMaven("https://cursemaven.com/", curse(curseDep))
+    } catch (Exception ignored) {
+        println("Failed to get dep " + curseDep + " from cursemaven. Grabbing from mirror.")
+        return deobfMaven("https://mvn.falsepattern.com/cursemaven/", curse(curseDep))
+    }
+}
 
 dependencies {
     compile("com.falsepattern:falsepatternlib-mc1.7.10:0.10.7:dev")
 
     compileOnly("org.projectlombok:lombok:1.18.22")
     annotationProcessor("org.projectlombok:lombok:1.18.22")
+
+    compile("com.github.GTMEGA:Chisel:2.9.16-GTMEGA:dev") {
+        transitive = false
+    }
+
+    //Biomes O' Plenty 2.1.0.2308
+    compile(deobfCurse("biomesoplenty-220318:2499612"))
 }

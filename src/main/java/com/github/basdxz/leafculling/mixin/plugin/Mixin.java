@@ -17,7 +17,11 @@ public enum Mixin implements IMixin {
     /**
      * Always required Mixins.
      */
-    BlockLeavesHideLeafAdjacentSideMixin(CLIENT, always(), "minecraft.BlockLeavesHideLeafAdjacentSideMixin");
+    BlockLeavesBaseHideSideAdjacentToEqualMixin(CLIENT, always(), "minecraft.BlockLeavesBaseHideSideAdjacentToEqualMixin"),
+    BlockBOPLeavesHideSideAdjacentToEqualMixin(CLIENT, always(), "bop.BlockBOPLeavesHideSideAdjacentToEqualMixin"),
+    BlockLeafHideSideAdjacentToEqualMixin(CLIENT, always(), "chisel.BlockLeafHideSideAdjacentToEqualMixin"),
+
+    ;
 
     private final Side side;
     private final Predicate<List<ITargetedMod>> filter;
