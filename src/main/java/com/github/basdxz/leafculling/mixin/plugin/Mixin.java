@@ -39,8 +39,7 @@ public enum Mixin implements IMixin {
     /**
      * The Aether Mixins.
      */
-    BlockAetherLeavesHideSideAdjacentToEqualMixin(CLIENT, require(AETHER), "aether.BlockAetherLeavesHideSideAdjacentToEqualMixin"),
-    ;
+    BlockAetherLeavesHideSideAdjacentToEqualMixin(CLIENT, require(AETHER), "aether.BlockAetherLeavesHideSideAdjacentToEqualMixin");
 
     private final Side side;
     private final Predicate<List<ITargetedMod>> filter;
