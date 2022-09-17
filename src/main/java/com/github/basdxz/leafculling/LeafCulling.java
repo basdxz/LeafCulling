@@ -14,6 +14,7 @@ import static net.minecraftforge.common.util.ForgeDirection.getOrientation;
 @Mod(modid = MODID, version = VERSION, name = MODNAME, acceptedMinecraftVersions = MINECRAFT_VERSION,
      dependencies = DEPENDENCIES)
 public class LeafCulling {
+    // Masks off the bits used for tracking leaf decay
     public static final int LEAF_DECAY_METADATA_MASK = 0xc;
 
     public static void handleHidingSidesAdjacentEqualLeaves(IBlockAccess blockAccess,
