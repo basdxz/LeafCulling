@@ -16,7 +16,7 @@ public enum TargetedMod implements ITargetedMod {
     CHISEL("Chisel", true, startsWith("chisel")),
     BIOMES_O_PLENTY("Biomes O' Plenty", true, startsWith("biomesoplenty")),
     FORESTRY("Forestry", true, startsWith("forestry")),
-    MINEFACTORY_RELOADED("Minefactory Reloaded", true, startsWith("minefactory-reloaded")),
+    MINEFACTORY_RELOADED("Minefactory Reloaded", true, startsWith("minefactoryreloaded")),
     AETHER("The Aether", true, startsWith("aether-"));
 
     private final String modName;
