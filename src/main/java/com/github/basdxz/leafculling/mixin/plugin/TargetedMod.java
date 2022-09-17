@@ -13,9 +13,10 @@ import static com.falsepattern.lib.mixin.ITargetedMod.PredicateHelpers.startsWit
 @Getter
 @RequiredArgsConstructor
 public enum TargetedMod implements ITargetedMod {
-    CHISEL("Chisel", false, startsWith("chisel")),
-    BIOMESOPLENTY("Biomes O' Plenty", false, startsWith("biomesoplenty")),
-    FORESTRY("Forestry", false, startsWith("forestry")),
+    CHISEL("Chisel", true, startsWith("chisel")),
+    BIOMES_O_PLENTY("Biomes O' Plenty", true, startsWith("biomesoplenty")),
+    FORESTRY("Forestry", true, startsWith("forestry")),
+    MINEFACTORY_RELOADED("Minefactory Reloaded", true, startsWith("minefactory-reloaded")),
 
     ;
 

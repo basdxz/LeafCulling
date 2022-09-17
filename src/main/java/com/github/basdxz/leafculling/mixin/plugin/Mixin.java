@@ -27,11 +27,15 @@ public enum Mixin implements IMixin {
     /**
      * Biomes O' Plenty Mixins.
      */
-    BlockBOPLeavesHideSideAdjacentToEqualMixin(CLIENT, require(BIOMESOPLENTY), "bop.BlockBOPLeavesHideSideAdjacentToEqualMixin"),
+    BlockBOPLeavesHideSideAdjacentToEqualMixin(CLIENT, require(BIOMES_O_PLENTY), "biomesoplenty.BlockBOPLeavesHideSideAdjacentToEqualMixin"),
     /**
      * Forestry Mixins.
      */
     BlockForestryLeavesHideSideAdjacentToEqualMixin(CLIENT, require(FORESTRY), "forestry.BlockForestryLeavesHideSideAdjacentToEqualMixin"),
+    /**
+     * Minefactory Reloaded Mixins.
+     */
+    BlockRubberLeavesHideSideAdjacentToEqualMixin(CLIENT, require(MINEFACTORY_RELOADED), "minefactoryreloaded.BlockRubberLeavesHideSideAdjacentToEqualMixin"),
     ;
 
     private final Side side;

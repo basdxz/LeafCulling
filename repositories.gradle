@@ -13,4 +13,8 @@ repositories {
         name = "gtmega"
         url = "https://mvn.falsepattern.com/gtmega_releases/"
     }
+    maven {
+        name = "cursemaven"
+        url = "https://mvn.falsepattern.com/cursemaven/"
+    }
 }
