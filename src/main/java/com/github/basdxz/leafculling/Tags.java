@@ -1,6 +1,9 @@
 package com.github.basdxz.leafculling;
 
-public class Tags {
+import lombok.experimental.*;
+
+@UtilityClass
+public final class Tags {
     // GRADLETOKEN_* will be replaced by your configuration values at build time
     public static final String MODID = "GRADLETOKEN_MODID";
     public static final String MODNAME = "GRADLETOKEN_MODNAME";
