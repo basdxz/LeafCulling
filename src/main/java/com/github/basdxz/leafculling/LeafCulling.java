@@ -10,7 +10,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 import org.spongepowered.asm.mixin.injection.callback.*;
 
 import static com.github.basdxz.leafculling.ModCompat.isBlockTConstructOreberryBush;
-import static com.github.basdxz.leafculling.ModCompat.isBlockTConstructOreberryBushMeta;
+import static com.github.basdxz.leafculling.ModCompat.isBlockTConstructOreberryBushSameMeta;
 import static com.github.basdxz.leafculling.Tags.*;
 import static net.minecraftforge.common.util.ForgeDirection.getOrientation;
 
@@ -67,7 +67,7 @@ public final class LeafCulling {
         var thisBlockMetadata = blockAccess.getBlockMetadata(thisXPos, thisYPos, thisZPos);
         var otherBlockMetadata = blockAccess.getBlockMetadata(otherXPos, otherYPos, otherZPos);
         if (isBlockTConstructOreberryBush(block))
-            return isBlockTConstructOreberryBushMeta(thisBlockMetadata, otherBlockMetadata);
+            return isBlockTConstructOreberryBushSameMeta(thisBlockMetadata, otherBlockMetadata);
         if (block instanceof BlockLeavesBase) {
             thisBlockMetadata &= ~LEAF_DECAY_METADATA_MASK;
             otherBlockMetadata &= ~LEAF_DECAY_METADATA_MASK;

@@ -9,6 +9,9 @@ import tconstruct.world.blocks.OreberryBush;
 
 @UtilityClass
 public final class ModCompat {
+    private static final int MAX_SIZE_META = 8;
+    private static final int MAX_BUSH_TYPE_META = 4;
+
     private static boolean IS_TCONSTRUCT_PRESENT;
 
     public static void init() {
@@ -19,8 +22,9 @@ public final class ModCompat {
         return IS_TCONSTRUCT_PRESENT && block instanceof OreberryBush;
     }
 
-    public static boolean isBlockTConstructOreberryBushMeta(int thisBlockMetadata,
-                                                            int otherBlockMetadata) {
-        return otherBlockMetadata >= 8;
+    public static boolean isBlockTConstructOreberryBushSameMeta(int thisBlockMetadata, int otherBlockMetadata) {
+        if (otherBlockMetadata < MAX_SIZE_META || thisBlockMetadata < MAX_SIZE_META)
+            return false;
+        return thisBlockMetadata % MAX_BUSH_TYPE_META == otherBlockMetadata % MAX_BUSH_TYPE_META;
     }
 }
