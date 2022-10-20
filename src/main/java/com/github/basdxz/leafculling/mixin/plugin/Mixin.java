@@ -17,29 +17,33 @@ import static com.github.basdxz.leafculling.mixin.plugin.TargetedMod.*;
 @RequiredArgsConstructor
 public enum Mixin implements IMixin {
     /**
-     * Always required Mixins.
+     * Vanilla
      */
     BlockLeavesBaseHideSideAdjacentToEqualMixin(CLIENT, always(), "minecraft.BlockLeavesBaseHideSideAdjacentToEqualMixin"),
     /**
-     * Chisel Mixins.
+     * Chisel
      */
     BlockLeafHideSideAdjacentToEqualMixin(CLIENT, require(CHISEL), "chisel.BlockLeafHideSideAdjacentToEqualMixin"),
     /**
-     * Biomes O' Plenty Mixins.
+     * Biomes O' Plenty
      */
     BlockBOPLeavesHideSideAdjacentToEqualMixin(CLIENT, require(BIOMES_O_PLENTY), "biomesoplenty.BlockBOPLeavesHideSideAdjacentToEqualMixin"),
     /**
-     * Forestry Mixins.
+     * Forestry
      */
     BlockForestryLeavesHideSideAdjacentToEqualMixin(CLIENT, require(FORESTRY), "forestry.BlockForestryLeavesHideSideAdjacentToEqualMixin"),
     /**
-     * Minefactory Reloaded Mixins.
+     * Minefactory Reloaded
      */
     BlockRubberLeavesHideSideAdjacentToEqualMixin(CLIENT, require(MINEFACTORY_RELOADED), "minefactoryreloaded.BlockRubberLeavesHideSideAdjacentToEqualMixin"),
     /**
-     * The Aether Mixins.
+     * The Aether
      */
-    BlockAetherLeavesHideSideAdjacentToEqualMixin(CLIENT, require(AETHER), "aether.BlockAetherLeavesHideSideAdjacentToEqualMixin");
+    BlockAetherLeavesHideSideAdjacentToEqualMixin(CLIENT, require(AETHER), "aether.BlockAetherLeavesHideSideAdjacentToEqualMixin"),
+    /**
+     * Thaumcraft
+     */
+    BlockMagicalLeavesLeavesHideSideAdjacentToEqualMixin(CLIENT, require(AETHER), "thaumcraft.BlockMagicalLeavesLeavesHideSideAdjacentToEqualMixin");
 
     private final Side side;
     private final Predicate<List<ITargetedMod>> filter;
