@@ -10,9 +10,12 @@
         "authorList": [
             "basdxz"
         ],
-        "credits": "",
+        "credits": "FalsePattern for FalsePatternLib. Houston for the artwork and mod request. quentin452 for extensive testing..",
         "logoFile": "",
         "screenshots": [],
-        "dependencies": []
+        "dependencies": [
+            "required-after:spongemixins@[1.1.0,)",
+            "required-after:falsepatternlib@[0.10.13,)"
+        ]
     }
 ]
