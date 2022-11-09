@@ -43,7 +43,7 @@ public enum Mixin implements IMixin {
     /**
      * Thaumcraft
      */
-    BlockMagicalLeavesLeavesHideSideAdjacentToEqualMixin(CLIENT, require(AETHER), "thaumcraft.BlockMagicalLeavesLeavesHideSideAdjacentToEqualMixin");
+    BlockMagicalLeavesLeavesHideSideAdjacentToEqualMixin(CLIENT, require(THAUMCRAFT), "thaumcraft.BlockMagicalLeavesLeavesHideSideAdjacentToEqualMixin");
 
     private final Side side;
     private final Predicate<List<ITargetedMod>> filter;
