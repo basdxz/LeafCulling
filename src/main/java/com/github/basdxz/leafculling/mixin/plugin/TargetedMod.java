@@ -18,7 +18,9 @@ public enum TargetedMod implements ITargetedMod {
     FORESTRY("Forestry", true, startsWith("forestry")),
     MINEFACTORY_RELOADED("Minefactory Reloaded", true, startsWith("minefactoryreloaded")),
     AETHER("The Aether", true, startsWith("aether-")),
-    THAUMCRAFT("Thaumcraft", true, startsWith("thaumcraft-"));
+    THAUMCRAFT("Thaumcraft", true, startsWith("thaumcraft-")),
+    KORE_SAMPLE("Kore Sample", true, startsWith("koresample-")),
+    ;
 
     private final String modName;
     private final boolean loadInDevelopment;
