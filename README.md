@@ -7,7 +7,7 @@ Cancels the rendering of hidden leaf sides, similar to OptiFine's Smart Leaves o
 ## Features
 
 - Hides the sides of leaves, making the same way as stained-glass
-- Designed to synergize [Better Foliage](https://www.curseforge.com/minecraft/mc-mods/better-foliage)
+- Designed to synergize well with [Better Foliage](https://www.curseforge.com/minecraft/mc-mods/better-foliage)
 - Implicit support for most mods that add leaves based on existing vanilla leaves
 - Explicit support for Chisel, Biomes O' Plenty, Forestry, Minefactory Reloaded, Aether (1 and 2), Tinkers Construct,
   Thaumcraft and Ancient Trees
