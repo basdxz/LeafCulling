@@ -14,7 +14,7 @@ import static com.github.basdxz.leafculling.ModCompat.isBlockTConstructOreberryB
 import static com.github.basdxz.leafculling.Tags.*;
 import static net.minecraftforge.common.util.ForgeDirection.getOrientation;
 
-@Mod(modid = MODID, version = VERSION, name = MODNAME, acceptedMinecraftVersions = MINECRAFT_VERSION,
+@Mod(modid = MOD_ID, version = VERSION, name = MOD_NAME, acceptedMinecraftVersions = MINECRAFT_VERSION,
      dependencies = DEPENDENCIES)
 public final class LeafCulling {
     // Masks off the bits used for tracking leaf decay
