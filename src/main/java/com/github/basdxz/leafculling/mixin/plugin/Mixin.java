@@ -19,35 +19,35 @@ public enum Mixin implements IMixin {
     /**
      * Vanilla
      */
-    BlockLeavesBaseHideSideAdjacentToEqualMixin(CLIENT, always(), "minecraft.BlockLeavesBaseHideSideAdjacentToEqualMixin"),
+    BlockLeavesBaseHideSideAdjacentToEqualMixin(CLIENT, always().negate(), "minecraft.BlockLeavesBaseHideSideAdjacentToEqualMixin"),
     /**
      * Chisel
      */
-    BlockLeafHideSideAdjacentToEqualMixin(CLIENT, require(CHISEL), "chisel.BlockLeafHideSideAdjacentToEqualMixin"),
+    BlockLeafHideSideAdjacentToEqualMixin(CLIENT, require(CHISEL).negate(), "chisel.BlockLeafHideSideAdjacentToEqualMixin"),
     /**
      * Biomes O' Plenty
      */
-    BlockBOPLeavesHideSideAdjacentToEqualMixin(CLIENT, require(BIOMES_O_PLENTY), "biomesoplenty.BlockBOPLeavesHideSideAdjacentToEqualMixin"),
+    BlockBOPLeavesHideSideAdjacentToEqualMixin(CLIENT, require(BIOMES_O_PLENTY).negate(), "biomesoplenty.BlockBOPLeavesHideSideAdjacentToEqualMixin"),
     /**
      * Forestry
      */
-    BlockForestryLeavesHideSideAdjacentToEqualMixin(CLIENT, require(FORESTRY), "forestry.BlockForestryLeavesHideSideAdjacentToEqualMixin"),
+    BlockForestryLeavesHideSideAdjacentToEqualMixin(CLIENT, require(FORESTRY).negate(), "forestry.BlockForestryLeavesHideSideAdjacentToEqualMixin"),
     /**
      * Minefactory Reloaded
      */
-    BlockRubberLeavesHideSideAdjacentToEqualMixin(CLIENT, require(MINEFACTORY_RELOADED), "minefactoryreloaded.BlockRubberLeavesHideSideAdjacentToEqualMixin"),
+    BlockRubberLeavesHideSideAdjacentToEqualMixin(CLIENT, require(MINEFACTORY_RELOADED).negate(), "minefactoryreloaded.BlockRubberLeavesHideSideAdjacentToEqualMixin"),
     /**
      * The Aether
      */
-    BlockAetherLeavesHideSideAdjacentToEqualMixin(CLIENT, require(AETHER), "aether.BlockAetherLeavesHideSideAdjacentToEqualMixin"),
+    BlockAetherLeavesHideSideAdjacentToEqualMixin(CLIENT, require(AETHER).negate(), "aether.BlockAetherLeavesHideSideAdjacentToEqualMixin"),
     /**
      * Thaumcraft
      */
-    BlockMagicalLeavesLeavesHideSideAdjacentToEqualMixin(CLIENT, require(THAUMCRAFT), "thaumcraft.BlockMagicalLeavesLeavesHideSideAdjacentToEqualMixin"),
+    BlockMagicalLeavesLeavesHideSideAdjacentToEqualMixin(CLIENT, require(THAUMCRAFT).negate(), "thaumcraft.BlockMagicalLeavesLeavesHideSideAdjacentToEqualMixin"),
     /**
      * Kore Sample
      */
-    LeavesBlockHideSideAdjacentToEqualMixin(CLIENT, require(KORE_SAMPLE), "koresample.LeavesBlockHideSideAdjacentToEqualMixin"),
+    LeavesBlockHideSideAdjacentToEqualMixin(CLIENT, require(KORE_SAMPLE).negate(), "koresample.LeavesBlockHideSideAdjacentToEqualMixin"),
     ;
 
     private final Side side;
