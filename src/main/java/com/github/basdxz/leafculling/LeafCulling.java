@@ -9,8 +9,8 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.common.util.ForgeDirection;
 import org.spongepowered.asm.mixin.injection.callback.*;
 
-import static com.github.basdxz.leafculling.ModCompat.isBlockTConstructOreberryBush;
-import static com.github.basdxz.leafculling.ModCompat.isBlockTConstructOreberryBushSameMeta;
+import java.util.Optional;
+
 import static com.github.basdxz.leafculling.Tags.*;
 import static net.minecraftforge.common.util.ForgeDirection.getOrientation;
 
@@ -31,60 +31,67 @@ public final class LeafCulling {
                                                             int otherZPos,
                                                             int side,
                                                             CallbackInfoReturnable<Boolean> cir) {
-        if (isBlockAtSideSameLeaf(blockAccess, otherXPos, otherYPos, otherZPos, side))
-            returnFalse(cir);
     }
 
-    public static boolean isBlockAtSideSameLeaf(@NonNull IBlockAccess blockAccess,
+    public static boolean isBlockAtSideSameLeaf(IBlockAccess blockAccess,
                                                 int otherXPos,
                                                 int otherYPos,
                                                 int otherZPos,
-                                                int side) {
-        return isBlockAtSideSameLeaf(blockAccess, otherXPos, otherYPos, otherZPos, getOrientation(side));
-    }
+                                                int directionID) {
+        val direction = getOrientation(directionID);
+        Block currentBlock = getBlock(blockAccess, otherXPos, otherYPos, otherZPos, direction, -1);
+        int currentBlockMeta = getBlockMetadata(blockAccess, otherXPos, otherYPos, otherZPos, direction, -1);
+        currentBlockMeta = applyLeafDecayMask(currentBlock, currentBlockMeta);
+        Block lastBlock;
+        int lastBlockMeta;
+        for (var i = 0; i < 1; i++) {
+            lastBlock = currentBlock;
+            lastBlockMeta = currentBlockMeta;
+            currentBlock = getBlock(blockAccess, otherXPos, otherYPos, otherZPos, direction, i);
+            currentBlockMeta = getBlockMetadata(blockAccess, otherXPos, otherYPos, otherZPos, direction, i);
+            currentBlockMeta = applyLeafDecayMask(currentBlock, currentBlockMeta);
+            if (currentBlock != lastBlock || currentBlockMeta != lastBlockMeta)
+                return false;
 
-    private static boolean isBlockAtSideSameLeaf(@NonNull IBlockAccess blockAccess,
-                                                 int otherXPos,
-                                                 int otherYPos,
-                                                 int otherZPos,
-                                                 @NonNull ForgeDirection direction) {
-        val thisXPos = otherXPos - direction.offsetX;
-        val thisYPos = otherYPos - direction.offsetY;
-        val thisZPos = otherZPos - direction.offsetZ;
-        val thisBlock = blockAccess.getBlock(thisXPos, thisYPos, thisZPos);
-        return isBlockSame(blockAccess, thisBlock, otherXPos, otherYPos, otherZPos) &&
-               isBlockMetadataSame(blockAccess,
-                                   otherXPos,
-                                   otherYPos,
-                                   otherZPos,
-                                   thisXPos,
-                                   thisYPos,
-                                   thisZPos,
-                                   thisBlock);
-    }
-
-    private static boolean isBlockMetadataSame(IBlockAccess blockAccess, int otherXPos, int otherYPos, int otherZPos, int thisXPos, int thisYPos, int thisZPos, @NonNull Block block) {
-        var thisBlockMetadata = blockAccess.getBlockMetadata(thisXPos, thisYPos, thisZPos);
-        var otherBlockMetadata = blockAccess.getBlockMetadata(otherXPos, otherYPos, otherZPos);
-        if (isBlockTConstructOreberryBush(block))
-            return isBlockTConstructOreberryBushSameMeta(thisBlockMetadata, otherBlockMetadata);
-        if (block instanceof BlockLeavesBase) {
-            thisBlockMetadata &= ~LEAF_DECAY_METADATA_MASK;
-            otherBlockMetadata &= ~LEAF_DECAY_METADATA_MASK;
+            Optional<Boolean> opt = Optional.ofNullable(false);
         }
-        return thisBlockMetadata == otherBlockMetadata;
+        return true;
     }
 
-    private static boolean isBlockSame(@NonNull IBlockAccess blockAccess,
-                                       @NonNull Block thisBlock,
-                                       int otherXPos,
-                                       int otherYPos,
-                                       int otherZPos) {
-        return thisBlock == blockAccess.getBlock(otherXPos, otherYPos, otherZPos);
+    private static Block getBlock(IBlockAccess blockAccess,
+                                  int posX,
+                                  int posY,
+                                  int posZ,
+                                  ForgeDirection direction,
+                                  int distance) {
+        return blockAccess.getBlock(posX + (direction.offsetX * distance),
+                                    posY + (direction.offsetY * distance),
+                                    posZ + (direction.offsetZ * distance));
     }
 
-    public static void returnFalse(@NonNull CallbackInfoReturnable<Boolean> cir) {
-        cir.setReturnValue(false);
-        cir.cancel();
+    private static int getBlockMetadata(IBlockAccess blockAccess,
+                                        int posX,
+                                        int posY,
+                                        int posZ,
+                                        ForgeDirection direction,
+                                        int distance) {
+        return blockAccess.getBlockMetadata(posX + (direction.offsetX * distance),
+                                            posY + (direction.offsetY * distance),
+                                            posZ + (direction.offsetZ * distance));
+
+    }
+
+    private static int applyLeafDecayMask(Block block, int blockMeta) {
+        if (block instanceof BlockLeavesBase)
+            blockMeta &= ~LEAF_DECAY_METADATA_MASK;
+        return blockMeta;
+    }
+
+    private static boolean areBlocksEqual(Block currentBlock,
+                                          int currentBlockMeta,
+                                          Block lastBlock,
+                                          int lastBlockMeta) {
+        return ModCompat.areBlocksEqual(currentBlock, currentBlockMeta, lastBlock, lastBlockMeta)
+                        .orElse(currentBlock == lastBlock && currentBlockMeta == lastBlockMeta);
     }
 }

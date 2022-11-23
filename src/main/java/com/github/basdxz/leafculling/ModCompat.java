@@ -7,6 +7,8 @@ import net.minecraft.block.Block;
 import tconstruct.TConstruct;
 import tconstruct.world.blocks.OreberryBush;
 
+import java.util.Optional;
+
 @UtilityClass
 public final class ModCompat {
     private static final int MAX_SIZE_META = 8;
@@ -16,6 +18,15 @@ public final class ModCompat {
 
     public static void init() {
         IS_TCONSTRUCT_PRESENT = Loader.isModLoaded(TConstruct.modID);
+    }
+
+    public static Optional<Boolean> areBlocksEqual(Block currentBlock,
+                                                   int currentBlockMeta,
+                                                   Block lastBlock,
+                                                   int lastBlockMeta) {
+        if (!((isBlockTConstructOreberryBush(currentBlock)) && isBlockTConstructOreberryBush(lastBlock)))
+            Optional.empty();
+        return Optional.of(isBlockTConstructOreberryBushSameMeta(currentBlockMeta, lastBlockMeta));
     }
 
     public static boolean isBlockTConstructOreberryBush(@NonNull Block block) {

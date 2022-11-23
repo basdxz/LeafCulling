@@ -33,8 +33,8 @@ public final class ASMUtil {
         } catch (IOException e) {
             LOG.warn(format("Failed to check if class: {0} can be cast into {1}",
                             className,
-                            targetClassName)
-                    , e);
+                            targetClassName),
+                     e);
         }
         return false;
     }
