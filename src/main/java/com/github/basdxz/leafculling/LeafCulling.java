@@ -14,23 +14,28 @@ import java.util.Optional;
 import static com.github.basdxz.leafculling.Tags.*;
 import static net.minecraftforge.common.util.ForgeDirection.getOrientation;
 
-@Mod(modid = MOD_ID, version = VERSION, name = MOD_NAME, acceptedMinecraftVersions = MINECRAFT_VERSION,
+@Mod(modid = MOD_ID,
+     version = VERSION,
+     name = MOD_NAME,
+     acceptedMinecraftVersions = MINECRAFT_VERSION,
      dependencies = DEPENDENCIES)
 public final class LeafCulling {
     // Masks off the bits used for tracking leaf decay
-    public static final int LEAF_DECAY_METADATA_MASK = 0xc;
+    public static final int LEAF_DECAY_METADATA_MASK = 0xC;
 
     @Mod.EventHandler
     public void init(FMLPreInitializationEvent event) {
         ModCompat.init();
     }
 
+    @Deprecated
     public static void handleHidingSidesAdjacentEqualLeaves(IBlockAccess blockAccess,
                                                             int otherXPos,
                                                             int otherYPos,
                                                             int otherZPos,
                                                             int side,
                                                             CallbackInfoReturnable<Boolean> cir) {
+        throw new UnsupportedOperationException("Unsupported method!");
     }
 
     public static boolean isBlockAtSideSameLeaf(IBlockAccess blockAccess,
