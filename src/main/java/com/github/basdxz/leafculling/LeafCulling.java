@@ -7,7 +7,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeavesBase;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.common.util.ForgeDirection;
-import org.spongepowered.asm.mixin.injection.callback.*;
 
 import java.util.Optional;
 
@@ -26,16 +25,6 @@ public final class LeafCulling {
     @Mod.EventHandler
     public void init(FMLPreInitializationEvent event) {
         ModCompat.init();
-    }
-
-    @Deprecated
-    public static void handleHidingSidesAdjacentEqualLeaves(IBlockAccess blockAccess,
-                                                            int otherXPos,
-                                                            int otherYPos,
-                                                            int otherZPos,
-                                                            int side,
-                                                            CallbackInfoReturnable<Boolean> cir) {
-        throw new UnsupportedOperationException("Unsupported method!");
     }
 
     public static boolean isBlockAtSideSameLeaf(IBlockAccess blockAccess,
