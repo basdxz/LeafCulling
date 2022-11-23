@@ -13,8 +13,8 @@ import static com.falsepattern.lib.mapping.types.NameType.Internal;
 import static com.github.basdxz.leafculling.asm.ASMUtil.isClassCastableTo;
 import static org.objectweb.asm.Opcodes.*;
 
-public final class GoofyLeaf implements IClassNodeTransformer {
-    private static final IClassNodeTransformer INSTANCE = new GoofyLeaf();
+public final class LeafCullingInjector implements IClassNodeTransformer {
+    private static final IClassNodeTransformer INSTANCE = new LeafCullingInjector();
     private static final String BLOCK_LEAVES_BASE_NAME = "net/minecraft/block/BlockLeavesBase";
     private static final String SHOULD_BE_RENDERED_METHOD_NAME;
     private static final String SHOULD_BE_RENDERED_METHOD_DESC;
@@ -37,7 +37,7 @@ public final class GoofyLeaf implements IClassNodeTransformer {
     }
 
     @Getter
-    public final String name = "GoofyLeaf";
+    public final String name = LeafCullingInjector.class.getSimpleName();
 
     @Override
     public boolean shouldTransform(ClassNode classNode, String transformedName, boolean obfuscated) {
@@ -53,16 +53,14 @@ public final class GoofyLeaf implements IClassNodeTransformer {
 
     @Override
     public void transform(ClassNode classNode, String transformedName, boolean obfuscated) {
-        shouldSideBeRenderedMethod(classNode).ifPresent(methodNode -> {
-            System.out.println("GOOFY_LEAF Applying to: " + classNode.name);
-            insertHideSideAdjacentToEqual(methodNode);
-        });
+        shouldSideBeRenderedMethod(classNode).ifPresent(this::insertHideSideAdjacentToEqual);
     }
 
     private Optional<MethodNode> shouldSideBeRenderedMethod(ClassNode classNode) {
-        return classNode.methods.stream()//TODO: cleanup
-                                .filter(this::isMethodShouldSideBeRendered)
-                                .findAny();
+        for (val method : classNode.methods)
+            if (isMethodShouldSideBeRendered(method))
+                return Optional.of(method);
+        return Optional.empty();
     }
 
     private boolean isMethodShouldSideBeRendered(MethodNode methodNode) {
@@ -77,7 +75,7 @@ public final class GoofyLeaf implements IClassNodeTransformer {
             Loads the arguments:
             (IBlockAccess p_149646_1_, int p_149646_2_, int p_149646_3_, int p_149646_4_, int p_149646_5_)
             Which can be interpreted as:
-            (IBlockAccess blockAccess, int otherXPos, int otherYPos, int otherZPos, int side)
+            (IBlockAccess blockAccess, int otherXPos, int otherYPos, int otherZPos, int directionID)
             Onto the stack
         */
         newInstructions.add(new VarInsnNode(ALOAD, 1));
@@ -87,7 +85,7 @@ public final class GoofyLeaf implements IClassNodeTransformer {
         newInstructions.add(new VarInsnNode(ILOAD, 5));
         /*
             Invokes the method:
-            com.github.basdxz.leafculling.LeafCulling(@NonNull IBlockAccess blockAccess, int otherXPos, int otherYPos, int otherZPos, int side)
+            com.github.basdxz.leafculling.LeafCulling(@NonNull IBlockAccess blockAccess, int otherXPos, int otherYPos, int otherZPos, int directionID)
             Which will consume the arguments and leave a boolean on the stack
          */
         newInstructions.add(new MethodInsnNode(INVOKESTATIC,

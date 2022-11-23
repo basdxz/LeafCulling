@@ -12,7 +12,7 @@ import static cpw.mods.fml.relauncher.IFMLLoadingPlugin.*;
 @SortingIndex(1000)
 @TransformerExclusions(ASM_PACKAGE)
 public final class LeafCullingPlugin implements SmartASMPlugin {
-    {
+    static {
         try {
             MappingManager.classForName(null, null, null);
         } catch (Exception ignored) {

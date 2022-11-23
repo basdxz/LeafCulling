@@ -10,7 +10,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.List;
 
 import static com.github.basdxz.leafculling.Tags.ASM_NAME;
-import static com.github.basdxz.leafculling.asm.impl.GoofyLeaf.goofyLeaf;
+import static com.github.basdxz.leafculling.asm.impl.LeafCullingInjector.goofyLeaf;
 import static java.util.Collections.singletonList;
 
 @Getter
