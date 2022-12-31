@@ -38,7 +38,7 @@ dependencies {
 //    //Mantle 0.3.2b
 //    compile(deobfCurse("mantle-74924:2264244"))
     //TConstruct 1.8.8.build991
-    compile(deobfCurse("tinkers-construct-74072:2277012"))
+    compileOnly(deobfCurse("tinkers-construct-74072:2277012"))
 //    //Baubles 1.0.1.10
 //    compile(deobfCurse("baubles-227083:2224857"))
 //    //Thaumcraft 4.2.1.0
