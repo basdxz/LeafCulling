@@ -22,6 +22,8 @@ public final class LeafCulling {
     // Masks off the bits used for tracking leaf decay
     public static final int LEAF_DECAY_METADATA_MASK = 0xC;
 
+    private static final int LEAF_DEPTH = 2;
+
     @Mod.EventHandler
     public void init(FMLPreInitializationEvent event) {
         ModCompat.init();
@@ -38,7 +40,7 @@ public final class LeafCulling {
         currentBlockMeta = applyLeafDecayMask(currentBlock, currentBlockMeta);
         Block lastBlock;
         int lastBlockMeta;
-        for (var i = 0; i < 1; i++) {
+        for (var i = 0; i < LEAF_DEPTH; i++) {
             lastBlock = currentBlock;
             lastBlockMeta = currentBlockMeta;
             currentBlock = getBlock(blockAccess, otherXPos, otherYPos, otherZPos, direction, i);
