@@ -2,15 +2,15 @@
 
 ![image](https://user-images.githubusercontent.com/5740991/196853114-f3c07a1c-7eaa-42be-955e-6144f0de09aa.png)
 
-Cancels the rendering of hidden leaf sides, similar to OptiFine's Smart Leaves option.
+Leaf Culling is a performance-enhancing mod that cancels the rendering of hidden leaf sides, similar to OptiFine's Smart Leaves option.
+Leading to a prettier, cleaner looking leaves.
 
 ## Features
 
-- Hides the sides of leaves, making the same way as stained-glass
-- Designed to synergize well with [Better Foliage](https://www.curseforge.com/minecraft/mc-mods/better-foliage)
-- Implicit support for most mods that add leaves based on existing vanilla leaves
-- Explicit support for Chisel, Biomes O' Plenty, Forestry, Minefactory Reloaded, Aether (1 and 2), Tinkers Construct,
-  Thaumcraft and Ancient Trees
+- **Optimized Leaf Rendering**: Hides the sides of leaves, rendering them in the same way as stained-glass.
+- **Compatibility with Better Foliage**: Designed to work seamlessly with the [Better Foliage](https://www.curseforge.com/minecraft/mc-mods/better-foliage) mod for an enhanced visual experience.
+- **Implicit Support for Modded Leaves**: Automatically supports most mods that add leaves based on existing vanilla leaves, ensuring consistent leaf culling across various modded environments.
+- **Explicit Support for Popular Mods**: Provides tailored support for popular mods such as Chisel, Biomes O' Plenty, Forestry, Minefactory Reloaded, Aether (1 and 2), Tinkers Construct, Thaumcraft, and Ancient Trees.
 
 ## Releases
 
