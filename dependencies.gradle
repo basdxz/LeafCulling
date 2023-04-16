@@ -12,37 +12,39 @@ def deobfCurse(curseDep) {
 }
 
 dependencies {
-    compile("com.falsepattern:falsepatternlib-mc1.7.10:0.10.13:dev")
+    // Lombok
+    compileOnly("org.projectlombok:lombok:1.18.26")
+    annotationProcessor("org.projectlombok:lombok:1.18.26")
 
-    compileOnly("org.projectlombok:lombok:1.18.22")
-    annotationProcessor("org.projectlombok:lombok:1.18.22")
+    // FalsePatternLib
+    implementation("com.falsepattern:falsepatternlib-mc1.7.10:0.11.2:dev")
 
-    //Chisel
+    // Chisel
     compileOnly("com.github.GTMEGA:Chisel:2.9.16-GTMEGA:dev") {
         transitive = false
     }
-    //Biomes O' Plenty 2.1.0.2308
+    // Biomes O' Plenty 2.1.0.2308
     compileOnly(deobfCurse("biomesoplenty-220318:2499612"))
-    //Forestry 4.2.16
+    // Forestry 4.2.16
     compileOnly(deobfCurse("forestry-59751:2333823"))
-    //CoFH Core 3.1.4-329-dev
+    // CoFH Core 3.1.4-329-dev
     compileOnly(curse("cofh-core-69162:2388751"))
-    //Minefactory Reloaded 2.8.1-174
+    // Minefactory Reloaded 2.8.1-174
     compileOnly(deobfCurse("minefactory-reloaded-66672:2277485"))
-    //The Aether 1.1.2.2
+    // The Aether 1.1.2.2
     compileOnly(deobfCurse("aether-255308:3280117"))
-    //The Aether II 1.6
+    // The Aether II 1.6
     compileOnly(deobfCurse("aether-ii-223796:2273367"))
-    //Mantle 0.3.2b
+    // Mantle 0.3.2b
     compileOnly(deobfCurse("mantle-74924:2264244"))
-    //TConstruct 1.8.8.build991
+    // TConstruct 1.8.8.build991
     compileOnly(deobfCurse("tinkers-construct-74072:2277012"))
-    //Baubles 1.0.1.10
+    // Baubles 1.0.1.10
     compileOnly(deobfCurse("baubles-227083:2224857"))
-    //Thaumcraft 4.2.1.0
+    // Thaumcraft 4.2.1.0
     compileOnly(deobfCurse("thaumcraft-223628:2215796"))
-    //Kore Sample 1.3.2
+    // Kore Sample 1.3.2
     compileOnly(deobfCurse("kore-sample-229624:2244613"))
-    //Ancient Trees 1.6.4
+    // Ancient Trees 1.6.4
     compileOnly(deobfCurse("ancient-trees-229626:2261983"))
 }
