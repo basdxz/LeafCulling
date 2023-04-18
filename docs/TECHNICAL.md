@@ -4,7 +4,7 @@ Break down of the inner workings of Leaf Culling as of 2023-04-16.
 
 ## Dependencies
 
-This mod depends on [FalsePatternLib](https://github.com/FalsePattern/FalsePatternLib) for the mixin plugin extensionlogic, alongside [SpongeMixins](https://github.com/SpongePowered/Mixin) to load the mixins used for injecting thepatches.
+This mod depends on [FalsePatternLib](https://github.com/FalsePattern/FalsePatternLib) for the mixin plugin extensionlogic, alongside [SpongeMixins](https://github.com/SpongePowered/Mixin) to load the mixins used for injecting the patches.
 
 ## Entry Points
 
@@ -16,13 +16,13 @@ There are two entry points in the mod. A Forge Mod locatedin [LeafCulling.java](
 
 ![Leaf Class Hierarchy](leaf_class_hierarchy.png?raw=true "Class Hierarchy")
 
-Vanilla leaves all extend `BlockLeaves`, which confusingly extends `BlockLeavesBase`.BlockOldLeaf` is used for Oak, Spruce, Birch and Jungle leaves, while `BlockNewLeaf` is used for Acacia and Big Oakleaves.
+Vanilla leaves all extend `BlockLeaves`, which confusingly extends `BlockLeavesBase`.BlockOldLeaf` is used for Oak, Spruce, Birch and Jungle leaves, while `BlockNewLeaf` is used for Acacia and Big Oak leaves.
 
 ### Leaf Metadata
 
 ![Leaf Metadata Structure](leaf_metadata.svg?raw=true "Metadata Structure")
 
-While Minecraft does have 4 bits for it's metadata, allowing for 16 possible states of each block, each leaf block typecan only represent 4 distinct variations. This is because half of the four bits are used to represent the leaf decayprogress, leaving the remaining for variations.
+While Minecraft does have 4 bits for it's metadata, allowing for 16 possible states of each block, each leaf block typecan only represent 4 distinct variations. This is because half of the four bits are used to represent the leaf decay progress, leaving the remaining for variations.
 
 ### Should Side Be Rendered Signature
 
@@ -41,6 +41,7 @@ The method arguments are rather misleading in the provided Forge documentation, 
 ### Should Side Be Rendered in Leaves
 
 TODO: SCREENSHOT
+
 The implementation in `BlockLeavesBase` will only hide the hidden sides if fast graphics are enables:
 
 ```Java
@@ -167,18 +168,19 @@ The injection delegates across to a [method in the LeafCulling Class](https://gi
 
 ### Why not force 'Fast Graphics' on the side check instead?
 
-- TODO: SCREENSHOT
-  This is another solution I considered here, but it comes with the downside that *any* adjacent leaf blocks will be
-  hidden. Rather than having a side rendered in between different variations of leaves.
+TODO: SCREENSHOT
+
+This is another solution I considered here, but it comes with the downside that *any* adjacent leaf blocks will be hidden. Rather than having a side rendered in between different variations of leaves.
 
 ## Mod compatibility
 
 ### Explicitly Patched Mods
 
-- TODO: SCREENSHOT
-  A list of patches for the supported mods can be found in
-  the [Mixin class](https://github.com/basdxz/LeafCulling/blob/95feaed779b8da52d29b0513e164f164a862d35c/src/main/java/com/github/basdxz/leafculling/mixin/plugin/Mixin.java),
-  here's a list provided for convenience:
+TODO: SCREENSHOT
+
+A list of patches for the supported mods can be found in the [Mixin class](https://github.com/basdxz/LeafCulling/blob/95feaed779b8da52d29b0513e164f164a862d35c/src/main/java/com/github/basdxz/leafculling/mixin/plugin/Mixin.java).
+
+A list provided for convenience:
 - Chisel
 - Biomes O' Plenty
 - Forestry
@@ -220,6 +222,7 @@ In these scenarios, a custom compatibility patch is needed.
 ## Tinkers Construct Ore Berries Patch
 
 TODO: SCREENSHOT BEFORE/AFTER
+
 The Tinkers Construct ore berry bush is an interesting edge case. For a start, it is odd for it to extend `BlockLeavesBase` considering how different it is from the general leaf block. Secondly, the size changes as it grows, requiring a bit of extra logic for it to work correctly.
 
 The implemented solution can be found in the [ModCompat class](https://github.com/basdxz/LeafCulling/blob/95feaed779b8da52d29b0513e164f164a862d35c/src/main/java/com/github/basdxz/leafculling/ModCompat.java). Where if Tinkers Construct is present, the extra check can be performed. It is a naive implementation, but it works well here.
