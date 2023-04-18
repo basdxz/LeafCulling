@@ -5,6 +5,8 @@
 Leaf Culling is a performance-enhancing mod that cancels the rendering of hidden leaf sides, similar to OptiFine's Smart Leaves option.
 Leading to a prettier, cleaner looking leaves.
 
+[Technical Document](https://github.com/basdxz/LeafCulling/blob/644ca5a9bbab401a3f61ea973431c040b7a8bed1/docs/TECHNICAL.md)
+
 ## Features
 
 - **Optimized Leaf Rendering**: Hides the sides of leaves, rendering them in the same way as stained-glass.
