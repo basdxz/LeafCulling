@@ -18,7 +18,7 @@ Break down of the inner workings of Leaf Culling as of 2023-04-16.
 
 ![UML diagram showing an inheritance hierarchy. BlockOldLeaf and BlockNewLeaf extend BlockLeaves. BlockLeaves extends BlockLeavesBase. BlockLeavesBase extends Block.](leaf_class_hierarchy.png?raw=true "Class Hierarchy")
 
-Vanilla leaves all extend `BlockLeaves`, which confusingly is the only class that extends `BlockLeavesBase`. BlockOldLeaf` is used for Oak, Spruce, Birch and Jungle leaves, while `BlockNewLeaf` is used for Acacia and Big Oak leaves.
+Vanilla leaves all extend `BlockLeaves`, which confusingly is the only class that extends `BlockLeavesBase`. `BlockOldLeaf` is used for Oak, Spruce, Birch and Jungle leaves, while `BlockNewLeaf` is used for Acacia and Big Oak leaves.
 
 ### Leaf Metadata
 
@@ -227,7 +227,7 @@ In these scenarios, a custom compatibility patch is needed.
 
 ## Tinkers Construct Ore Berries Patch
 
-TODO: SCREENSHOT BEFORE/AFTER
+TODO: SCREENSHOT BEFORE / AFTER
 
 The Tinkers Construct ore berry bush is an interesting edge case. For a start, it is odd for it to extend `BlockLeavesBase` considering how different it is from the general leaf block. Secondly, the size changes as it grows, requiring a bit of extra logic for it to work correctly.
 
@@ -240,3 +240,7 @@ It restricts the side culling by two criteria, the bushes must be the same ore b
 In the next iteration of Leaf Culling, I would like to move away from the individual Mixin-based approach to a more general global-ASM based approach, adding only extra logic for edge cases such as the berry bushes or other edge-cases that may pop up.
 
 I would also like to have an in-game method of including additional leaves, storing them as a config. Perhaps even shipping with a decent pre-made configuration file for any outliers.
+
+Another improvement is to add additional checks along the depth of the leaf blocks, checking it's surrounding blocks/total blocks behind it. This is similar to how another similar mod has it implemented:
+
+TODO: MOD INFO and SCREENSHOT
