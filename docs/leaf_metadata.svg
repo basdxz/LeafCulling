@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="411.0000000000001px" width="820.9999999999998px"
+     viewBox="-10 -10 840.9999999999998 431.0000000000001"
+     content="&lt;mxGraphModel dx=&quot;1994&quot; dy=&quot;1774&quot; grid=&quot;1&quot; gridSize=&quot;10&quot; guides=&quot;1&quot; tooltips=&quot;1&quot; connect=&quot;1&quot; arrows=&quot;1&quot; fold=&quot;1&quot; page=&quot;0&quot; pageScale=&quot;1&quot; pageWidth=&quot;850&quot; pageHeight=&quot;1100&quot; math=&quot;0&quot; shadow=&quot;0&quot;&gt;&lt;root&gt;&lt;mxCell id=&quot;0&quot;/&gt;&lt;mxCell id=&quot;1&quot; parent=&quot;0&quot;/&gt;&lt;mxCell id=&quot;2&quot; value=&quot;1&quot; style=&quot;rounded=0;whiteSpace=wrap;fontFamily=EXO2;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DEXO2;fontSize=72;spacing=10;html=1;labelBorderColor=none;fillColor=#2D2D2D;fontColor=#F0F0F0;absoluteArcSize=1;arcSize=30;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;connectable=1;strokeColor=#16C92E;&quot; parent=&quot;1&quot; vertex=&quot;1&quot;&gt;&lt;mxGeometry x=&quot;424.1176470588235&quot; y=&quot;470.5882352941176&quot; width=&quot;192.94117647058823&quot; height=&quot;192.94117647058823&quot; as=&quot;geometry&quot;/&gt;&lt;/mxCell&gt;&lt;mxCell id=&quot;5&quot; value=&quot;MSB&quot; style=&quot;text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=EXO2;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DEXO2;fontSize=72;fontColor=#F0F0F0;&quot; parent=&quot;1&quot; vertex=&quot;1&quot;&gt;&lt;mxGeometry x=&quot;-10&quot; y=&quot;663.5294117647059&quot; width=&quot;192.94117647058823&quot; height=&quot;96.47058823529412&quot; as=&quot;geometry&quot;/&gt;&lt;/mxCell&gt;&lt;mxCell id=&quot;6&quot; value=&quot;LSB&quot; style=&quot;text;html=1;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=EXO2;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DEXO2;fontSize=72;fontColor=#F0F0F0;&quot; parent=&quot;1&quot; vertex=&quot;1&quot;&gt;&lt;mxGeometry x=&quot;617.0588235294117&quot; y=&quot;663.5294117647059&quot; width=&quot;192.94117647058823&quot; height=&quot;96.47058823529412&quot; as=&quot;geometry&quot;/&gt;&lt;/mxCell&gt;&lt;mxCell id=&quot;7&quot; value=&quot;0&quot; style=&quot;rounded=0;whiteSpace=wrap;fontFamily=EXO2;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DEXO2;fontSize=72;spacing=10;html=1;labelBorderColor=none;fillColor=#2D2D2D;fontColor=#F0F0F0;absoluteArcSize=1;arcSize=30;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;connectable=1;strokeColor=#16C92E;&quot; parent=&quot;1&quot; vertex=&quot;1&quot;&gt;&lt;mxGeometry x=&quot;617.0588235294117&quot; y=&quot;470.5882352941176&quot; width=&quot;192.94117647058823&quot; height=&quot;192.94117647058823&quot; as=&quot;geometry&quot;/&gt;&lt;/mxCell&gt;&lt;mxCell id=&quot;8&quot; value=&quot;3&quot; style=&quot;rounded=0;whiteSpace=wrap;fontFamily=EXO2;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DEXO2;fontSize=72;spacing=10;html=1;labelBorderColor=none;fillColor=#2D2D2D;fontColor=#F0F0F0;strokeColor=#2C74FF;absoluteArcSize=1;arcSize=30;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;connectable=1;&quot; parent=&quot;1&quot; vertex=&quot;1&quot;&gt;&lt;mxGeometry x=&quot;-10&quot; y=&quot;470.5882352941176&quot; width=&quot;192.94117647058823&quot; height=&quot;192.94117647058823&quot; as=&quot;geometry&quot;/&gt;&lt;/mxCell&gt;&lt;mxCell id=&quot;9&quot; value=&quot;2&quot; style=&quot;rounded=0;whiteSpace=wrap;fontFamily=EXO2;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DEXO2;fontSize=72;spacing=10;html=1;labelBorderColor=none;fillColor=#2D2D2D;fontColor=#F0F0F0;strokeColor=#2C74FF;absoluteArcSize=1;arcSize=30;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;connectable=1;&quot; parent=&quot;1&quot; vertex=&quot;1&quot;&gt;&lt;mxGeometry x=&quot;182.94117647058823&quot; y=&quot;470.5882352941176&quot; width=&quot;192.94117647058823&quot; height=&quot;192.94117647058823&quot; as=&quot;geometry&quot;/&gt;&lt;/mxCell&gt;&lt;mxCell id=&quot;11&quot; value=&quot;Variation&quot; style=&quot;text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=EXO2;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DEXO2;fontSize=72;fontColor=#F0F0F0;&quot; parent=&quot;1&quot; vertex=&quot;1&quot;&gt;&lt;mxGeometry x=&quot;520.5882352941176&quot; y=&quot;350&quot; width=&quot;192.94117647058823&quot; height=&quot;96.47058823529412&quot; as=&quot;geometry&quot;/&gt;&lt;/mxCell&gt;&lt;mxCell id=&quot;12&quot; value=&quot;Decay&quot; style=&quot;text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=EXO2;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DEXO2;fontSize=72;fontColor=#F0F0F0;&quot; parent=&quot;1&quot; vertex=&quot;1&quot;&gt;&lt;mxGeometry x=&quot;86.47058823529412&quot; y=&quot;350&quot; width=&quot;192.94117647058823&quot; height=&quot;96.47058823529412&quot; as=&quot;geometry&quot;/&gt;&lt;/mxCell&gt;&lt;/root&gt;&lt;/mxGraphModel&gt;">
+    <style type="text/css"></style>
+    <rect x="434.62" y="121.09" width="192.94" height="192.94" fill="#2d2d2d" stroke="#16c92e" pointer-events="none"/>
+    <g>
+        <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%">
+            <div xmlns="http://www.w3.org/1999/xhtml"
+                 style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 175px; height: 1px; padding-top: 218px; margin-left: 444px;">
+                <div style="box-sizing: border-box; font-size: 0; text-align: center; ">
+                    <div style="display: inline-block; font-size: 72px; font-family: EXO2; color: #F0F0F0; line-height: 1.2; pointer-events: none; white-space: normal; word-wrap: normal; ">
+                        1
+                    </div>
+                </div>
+            </div>
+        </foreignObject>
+    </g>
+    <g>
+        <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%">
+            <div xmlns="http://www.w3.org/1999/xhtml"
+                 style="display: flex; align-items: unsafe center; justify-content: unsafe flex-start; width: 191px; height: 1px; padding-top: 362px; margin-left: 3px;">
+                <div style="box-sizing: border-box; font-size: 0; text-align: left; ">
+                    <div style="display: inline-block; font-size: 72px; font-family: EXO2; color: #F0F0F0; line-height: 1.2; pointer-events: none; white-space: normal; word-wrap: normal; ">
+                        MSB
+                    </div>
+                </div>
+            </div>
+        </foreignObject>
+    </g>
+    <g>
+        <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%">
+            <div xmlns="http://www.w3.org/1999/xhtml"
+                 style="display: flex; align-items: unsafe center; justify-content: unsafe flex-end; width: 191px; height: 1px; padding-top: 362px; margin-left: 628px;">
+                <div style="box-sizing: border-box; font-size: 0; text-align: right; ">
+                    <div style="display: inline-block; font-size: 72px; font-family: EXO2; color: #F0F0F0; line-height: 1.2; pointer-events: none; white-space: normal; word-wrap: normal; ">
+                        LSB
+                    </div>
+                </div>
+            </div>
+        </foreignObject>
+    </g>
+    <rect x="627.56" y="121.09" width="192.94" height="192.94" fill="#2d2d2d" stroke="#16c92e" pointer-events="none"/>
+    <g>
+        <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%">
+            <div xmlns="http://www.w3.org/1999/xhtml"
+                 style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 175px; height: 1px; padding-top: 218px; margin-left: 637px;">
+                <div style="box-sizing: border-box; font-size: 0; text-align: center; ">
+                    <div style="display: inline-block; font-size: 72px; font-family: EXO2; color: #F0F0F0; line-height: 1.2; pointer-events: none; white-space: normal; word-wrap: normal; ">
+                        0
+                    </div>
+                </div>
+            </div>
+        </foreignObject>
+    </g>
+    <rect x="0.5" y="121.09" width="192.94" height="192.94" fill="#2d2d2d" stroke="#2c74ff" pointer-events="none"/>
+    <g>
+        <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%">
+            <div xmlns="http://www.w3.org/1999/xhtml"
+                 style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 175px; height: 1px; padding-top: 218px; margin-left: 9px;">
+                <div style="box-sizing: border-box; font-size: 0; text-align: center; ">
+                    <div style="display: inline-block; font-size: 72px; font-family: EXO2; color: #F0F0F0; line-height: 1.2; pointer-events: none; white-space: normal; word-wrap: normal; ">
+                        3
+                    </div>
+                </div>
+            </div>
+        </foreignObject>
+    </g>
+    <rect x="193.44" y="121.09" width="192.94" height="192.94" fill="#2d2d2d" stroke="#2c74ff" pointer-events="none"/>
+    <g>
+        <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%">
+            <div xmlns="http://www.w3.org/1999/xhtml"
+                 style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 175px; height: 1px; padding-top: 218px; margin-left: 202px;">
+                <div style="box-sizing: border-box; font-size: 0; text-align: center; ">
+                    <div style="display: inline-block; font-size: 72px; font-family: EXO2; color: #F0F0F0; line-height: 1.2; pointer-events: none; white-space: normal; word-wrap: normal; ">
+                        2
+                    </div>
+                </div>
+            </div>
+        </foreignObject>
+    </g>
+    <g>
+        <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%">
+            <div xmlns="http://www.w3.org/1999/xhtml"
+                 style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 191px; height: 1px; padding-top: 49px; margin-left: 532px;">
+                <div style="box-sizing: border-box; font-size: 0; text-align: center; ">
+                    <div style="display: inline-block; font-size: 72px; font-family: EXO2; color: #F0F0F0; line-height: 1.2; pointer-events: none; white-space: normal; word-wrap: normal; ">
+                        Variation
+                    </div>
+                </div>
+            </div>
+        </foreignObject>
+    </g>
+    <g>
+        <foreignObject style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%">
+            <div xmlns="http://www.w3.org/1999/xhtml"
+                 style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 191px; height: 1px; padding-top: 49px; margin-left: 98px;">
+                <div style="box-sizing: border-box; font-size: 0; text-align: center; ">
+                    <div style="display: inline-block; font-size: 72px; font-family: EXO2; color: #F0F0F0; line-height: 1.2; pointer-events: none; white-space: normal; word-wrap: normal; ">
+                        Decay
+                    </div>
+                </div>
+            </div>
+        </foreignObject>
+    </g>
+</svg>
