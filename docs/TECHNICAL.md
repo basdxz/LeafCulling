@@ -1,6 +1,6 @@
 # Technical Details
 
-Break down of the inner workings of Leaf Culling as of 2023-04-16.
+Break down of the inner workings of Leaf Culling as of 2023-04-18.
 
 ## Dependencies
 
@@ -9,8 +9,8 @@ Break down of the inner workings of Leaf Culling as of 2023-04-16.
 
 ## Entry Points
 
-- [Forge Mod](https://github.com/basdxz/LeafCulling/blob/95feaed779b8da52d29b0513e164f164a862d35c/src/main/java/com/github/basdxz/leafculling/LeafCulling.java): Used for initializing some compatibility classes at load time. 
-- [Mixin Plugin](https://github.com/basdxz/LeafCulling/blob/95feaed779b8da52d29b0513e164f164a862d35c/src/main/java/com/github/basdxz/leafculling/mixin/plugin/MixinPlugin.java): Used for the mixin patches.
+- [Forge Mod](https://github.com/basdxz/LeafCulling/blob/95feaed779b8da52d29b0513e164f164a862d35c/src/main/java/com/github/basdxz/leafculling/LeafCulling.java): Used for initializing some compatibility classes at load time.
+- [Mixin Plugin](https://github.com/basdxz/LeafCulling/blob/95feaed779b8da52d29b0513e164f164a862d35c/src/main/java/com/github/basdxz/leafculling/mixin/plugin/MixinPlugin.java): Used for the mixin patches
 
 ## Vanilla Behaviour
 
@@ -47,9 +47,15 @@ The method arguments are rather misleading in the provided Forge documentation, 
 
 ### Should Side Be Rendered in Leaves
 
-TODO: SCREENSHOT
+The implementation in `BlockLeavesBase` will only render the obscured sides if fancy graphics are enabled.
 
-The implementation in `BlockLeavesBase` will only hide the hidden sides if fast graphics are enables:
+![Screenshot of vanilla Minecraft leaves with fancy graphics turned on. With a red overlay outline over the geometry of the leaf blocks. Demonstrating that the internal sides have geometry.](leaf_vanilla_fancy.png)
+
+![Screenshot of vanilla Minecraft leaves with fast graphics turned on. With a red overlay outline over the geometry of the leaf blocks. Demonstrating that the internal sides don't have geometry.](leaf_vanilla_fast.png)
+
+In these two examples, with the first being fancy graphics and the second fast, the red outline shows the geometry of the blocks.
+
+The following code is responsible for deciding weather to render or skip these sides:
 
 ```Java
 // As found when using MCP mappings
@@ -85,6 +91,8 @@ public boolean shouldSideBeRendered(IBlockAccess blockAccess, int otherXPos, int
 In contrast to the desired behaviour of having leaves act more like stained glass, which inherits it's method from extending `BlockBreakable`.
 
 TODO: SCREENSHOT
+
+![Screenshot of vanilla Minecraft showing three layers of stained glass blocks. Lime, red and blue. Demonstrating how only the internal sides between the different layers are visible.](stained_glass.png)
 
 Stained glass, which has a special case included in the `BlockBreakable` class, will instead check if the nearby block is another stained glass with the same meta. If this the case, the side will not be rendered.
 
@@ -142,13 +150,15 @@ public boolean shouldSideBeRendered(IBlockAccess blockAccess, int otherXPos, int
 
 ### Resulting Visuals
 
-TODO: Screenshot
-TODO: Video
+![Screenshot of Minecraft with the Leaf Culling mod installed. Showcasing various trees side-by-side.](final_product.png)
+
+[![YouTube video demonstrating the decay of leaves. When the leaves decay, their decaying state is not factored into the metadata comparison.](http://img.youtube.com/vi/AWxp2vOyoHY/0.jpg)](http://www.youtube.com/watch?v=AWxp2vOyoHY)
+
 With the implemented solution, the visuals produce the desired effect as seen above. With proper handling of decaying leaves.
 
 ### Mixin Injection
 
-The first part of this implementation is an [injection into the BlockLeavesBase class](https://github.com/basdxz/LeafCulling/blob/95feaed779b8da52d29b0513e164f164a862d35c/src/main/java/com/github/basdxz/leafculling/mixin/mixins/client/minecraft/BlockLeavesBaseHideSideAdjacentToEqualMixin.java). Injecting at the start of the `shouldSideBeRendered` method to insert my own check.
+The first part of this implementation is an injection into the [BlockLeavesBase.class](https://github.com/basdxz/LeafCulling/blob/95feaed779b8da52d29b0513e164f164a862d35c/src/main/java/com/github/basdxz/leafculling/mixin/mixins/client/minecraft/BlockLeavesBaseHideSideAdjacentToEqualMixin.java). Injecting at the start of the `shouldSideBeRendered` method to insert my own check.
 
 The resulting injection looks like this in the `BlockLeavesBase` class:
 
@@ -171,23 +181,16 @@ private void handler$zzd000$hideSidesAdjacentToEqualBlock(IBlockAccess blockAcce
 
 ### New Should Side be Rendered Check
 
-The injection delegates across to a [method in the LeafCulling Class](https://github.com/basdxz/LeafCulling/blob/95feaed779b8da52d29b0513e164f164a862d35c/src/main/java/com/github/basdxz/leafculling/LeafCulling.java#L28), which performs much the same checks as the stained glass. Comparing this block to the other block, including the metadata, with the only difference being that the two most significant bits of the leaves, which are used to represent the decay, are masked off.
-
-### Why not force 'Fast Graphics' on the side check instead?
-
-TODO: SCREENSHOT
-
-This is another solution I considered here, but it comes with the downside that *any* adjacent leaf blocks will be hidden. Rather than having a side rendered in between different variations of leaves.
+The injection delegates across to a method in the [LeafCulling.class](https://github.com/basdxz/LeafCulling/blob/95feaed779b8da52d29b0513e164f164a862d35c/src/main/java/com/github/basdxz/leafculling/LeafCulling.java#L28), which performs much the same checks as the stained glass. Comparing this block to the other block, including the metadata, with the only difference being that the two most significant bits of the leaves, which are used to represent the decay, are masked off.
 
 ## Mod compatibility
 
 ### Explicitly Patched Mods
 
-TODO: SCREENSHOT
+A list of patches for the supported mods can be found in the [Mixin.class](https://github.com/basdxz/LeafCulling/blob/95feaed779b8da52d29b0513e164f164a862d35c/src/main/java/com/github/basdxz/leafculling/mixin/plugin/Mixin.java).
 
-A list of patches for the supported mods can be found in the [Mixin class](https://github.com/basdxz/LeafCulling/blob/95feaed779b8da52d29b0513e164f164a862d35c/src/main/java/com/github/basdxz/leafculling/mixin/plugin/Mixin.java).
+Provided here for convenience:
 
-A list provided for convenience:
 - Chisel
 - Biomes O' Plenty
 - Forestry
@@ -222,17 +225,17 @@ public boolean shouldSideBeRendered(IBlockAccess par1IBlockAccess, int par2, int
 
 Not extending the `BlockLeaves` or `BlockLeavesBase` class, such as in Chisel's `BlockLeaf` class:
 
-![UML diagram showing an inheritance hierarchy. BlockLeaf extends BlockCarvable. BlockCarvable extends Block and implements ICarvable. ICarvable extends ICTMBlock](chisel_leaves_class_hierarchy.png)
+![UML diagram showing an inheritance hierarchy. BlockLeaf extends BlockCarvable. BlockCarvable extends Block and implements ICarvable. ICarvable extends ICTMBlock.](chisel_leaves_class_hierarchy.png)
 
 In these scenarios, a custom compatibility patch is needed.
 
 ## Tinkers Construct Ore Berries Patch
 
-TODO: SCREENSHOT BEFORE / AFTER
+![Screenshot of Minecraft with the Leaf Culling mod installed. Showcasing how only the insides of a fully grown ore berry bush has it's geometry hidden.](ore_berries.png)
 
 The Tinkers Construct ore berry bush is an interesting edge case. For a start, it is odd for it to extend `BlockLeavesBase` considering how different it is from the general leaf block. Secondly, the size changes as it grows, requiring a bit of extra logic for it to work correctly.
 
-The implemented solution can be found in the [ModCompat class](https://github.com/basdxz/LeafCulling/blob/95feaed779b8da52d29b0513e164f164a862d35c/src/main/java/com/github/basdxz/leafculling/ModCompat.java). Where if Tinkers Construct is present, the extra check can be performed. It is a naive implementation, but it works well here.
+The implemented solution can be found in the [ModCompat.class](https://github.com/basdxz/LeafCulling/blob/95feaed779b8da52d29b0513e164f164a862d35c/src/main/java/com/github/basdxz/leafculling/ModCompat.java). Where if Tinkers Construct is present, the extra check can be performed. It is a naive implementation, but it works well here.
 
 It restricts the side culling by two criteria, the bushes must be the same ore bush by variation and they must both be max sided.
 
@@ -242,6 +245,4 @@ In the next iteration of Leaf Culling, I would like to move away from the indivi
 
 I would also like to have an in-game method of including additional leaves, storing them as a config. Perhaps even shipping with a decent pre-made configuration file for any outliers.
 
-Another improvement is to add additional checks along the depth of the leaf blocks, checking it's surrounding blocks/total blocks behind it. This is similar to how another similar mod has it implemented:
-
-TODO: MOD INFO and SCREENSHOT
+[Cull Leaves](https://www.curseforge.com/minecraft/mc-mods/cull-leaves) mod along side the [Better Leaves](https://) resourcepack, both made by [Motschen](https://legacy.curseforge.com/members/Motschen/projects), provide a better visual experience in Minecraft versions 1.13 and up. In part from hiding only the backside of the leaves if they are deep enough into the tree. Including equivalent functionallity is also planned.
