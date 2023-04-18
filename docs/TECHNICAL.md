@@ -12,8 +12,7 @@ patches.
 
 There are two entry points in the mod. A Forge Mod located
 in [LeafCulling.java](https://github.com/basdxz/LeafCulling/blob/95feaed779b8da52d29b0513e164f164a862d35c/src/main/java/com/github/basdxz/leafculling/LeafCulling.java),
-used for initializing some compatibility classes at load time.
-Additionally, a SpongeMixins Plugin one located
+used for initializing some compatibility classes at load time. Additionally, a SpongeMixins Plugin one located
 in [MixinPlugin.java](https://github.com/basdxz/LeafCulling/blob/95feaed779b8da52d29b0513e164f164a862d35c/src/main/java/com/github/basdxz/leafculling/mixin/plugin/MixinPlugin.java)
 for the patches.
 
@@ -22,8 +21,9 @@ for the patches.
 ### Leaf Class Hierarchy
 
 ![Leaf Class Hierarchy](leaf_class_hierarchy.png?raw=true "Class Hierarchy")
+
 Vanilla leaves all extend `BlockLeaves`, which confusingly extends `BlockLeavesBase`.
-`BlockOldLeaf` is used for Oak, Spruce, Birch and Jungle leaves, while `BlockNewLeaf` is used for Acacia and Big Oak
+BlockOldLeaf` is used for Oak, Spruce, Birch and Jungle leaves, while `BlockNewLeaf` is used for Acacia and Big Oak
 leaves.
 
 ### Leaf Metadata
@@ -48,13 +48,11 @@ public boolean shouldSideBeRendered(IBlockAccess blockAccess,int otherXPos,int o
 ```
 
 The method arguments are rather misleading in the provided Forge documentation, as such I have corrected them for
-clarity.
-`IBlockAccess blockAccess`: This is generally a `ChunkCache` object, which sources it's data from `WorldClient`.
-`int otherXPos, int otherYPos, int otherZPos`: Forge documentation has them documented as `x y z`, but they are meant to
-be the position of the other block, which this block is being compared against.
-`int side`: This is the side of this block which is being checked, it is also the direction of the block provided in the
-position.
-`boolean return`: True if the side should render, otherwise false.
+clarity.`IBlockAccess blockAccess`: This is generally a `ChunkCache` object, which sources it's data
+from `WorldClient`.`int otherXPos, int otherYPos, int otherZPos`: Forge documentation has them documented as `x y z`,
+but they are meant to be the position of the other block, which this block is being compared against.`int side`: This is
+the side of this block which is being checked, it is also the direction of the block provided in the
+position.`boolean return`: True if the side should render, otherwise false.
 
 ### Should Side Be Rendered in Leaves
 
@@ -90,7 +88,6 @@ public boolean shouldSideBeRendered(IBlockAccess blockAccess,int otherXPos,int o
 
 ### Stained Glass Should Side be Rendered
 
-![[stained_glass_class_hierarchy.png]]
 ![Stained Glass Class Hierarchy](stained_glass_class_hierarchy.png?raw=true "Class Hierarchy")
 
 In contrast to the desired behaviour of having leaves act more like stained glass, which inherits it's method from
@@ -106,7 +103,7 @@ public boolean shouldSideBeRendered(IBlockAccess blockAccess,int otherXPos,int o
         Block block=blockAccess.getBlock(otherXPos,otherYPos,otherZPos);
 
         if(this==Blocks.glass||this==Blocks.stained_glass){
-        if(blockAccess.getBlockMetadata(otherXPos,otherYPos,otherZPos)!=blockAccess.getBlockMetadata(otherXPos-Facing.offsetsXForSide[side],otherYPos Facing.offsetsYForSide[side],otherZPos-Facing.offsetsZForSide[side])){
+        if(blockAccess.getBlockMetadata(otherXPos,otherYPos,otherZPos)!=blockAccess.getBlockMetadata(otherXPos-Facing.offsetsXForSide[side],otherYPos-Facing.offsetsYForSide[side],otherZPos-Facing.offsetsZForSide[side])){
         return true;
         }
 
@@ -120,32 +117,32 @@ public boolean shouldSideBeRendered(IBlockAccess blockAccess,int otherXPos,int o
 
 // Cleaned up for clarity
 public boolean shouldSideBeRendered(IBlockAccess blockAccess,int otherXPos,int otherYPos,int otherZPos,int side){
-        // Gets the other block.  
+        // Gets the other block.
         Block otherBlock=blockAccess.getBlock(otherXPos,otherYPos,otherZPos);
 
-        // The special case for glass blocks.  
+        // The special case for glass blocks.
         if(this==Blocks.glass||this==Blocks.stained_glass){
-        // Fetches the metadata of this and the adjacent block.  
+        // Fetches the metadata of this and the adjacent block.
         int thisBlockMetadata=blockAccess.getBlockMetadata(otherXPos-Facing.offsetsXForSide[side],
         otherYPos-Facing.offsetsYForSide[side],
         otherZPos-Facing.offsetsZForSide[side]);
         int otherBlockMetadata=blockAccess.getBlockMetadata(otherXPos,otherYPos,otherZPos);
 
-        // If the metadata doesn't match, render the side.  
-        if(thisBlockMetadata!=otherBlockMetadata)
+        // If the metadata doesn't match, render the side.
+        if(thisBlockM etadata!=otherBlockMetadata)
         return true;
 
-        // If the block is equal to this block (in this case, both meta and object) render it.  
+        // If the block is equal to this block (in this case, both meta and object) render it.
         if(otherBlock==this)
+        return false;
+
+        // If these blocks are the exact same and hide internal sides is false, skip rendering this block.
+        // As a note, the `showInternalSides` variable is always false in Vanilla.
+        if(otherBlock==this&&!showInternalSides)
         return false;
         }
 
-        // If these blocks are the exact same and hide internal sides is false, skip rendering this block.  
-        // As a note, the `showInternalSides` variable is always false in Vanilla.  
-        if(otherBlock==this&&!showInternalSides)
-        return false;
-
-        // Finally, fallback on the super method.  
+        // Finally, fallback on the super method.
         return super.shouldSideBeRendered(blockAccess,otherXPos,otherYPos,otherZPos,side);
         }
 ```
@@ -168,7 +165,6 @@ Injecting at the start of the `shouldSideBeRendered` method to insert my own che
 The resulting injection looks like this in the `BlockLeavesBase` class:
 
 ```java
-@SideOnly(Side.CLIENT)
 public boolean shouldSideBeRendered(IBlockAccess p_149646_1_,int p_149646_2_,int p_149646_3_,int p_149646_4_,int p_149646_5_){
         CallbackInfoReturnable callbackInfo7=new CallbackInfoReturnable("shouldSideBeRendered",true);
         this.handler$zzd000$hideSidesAdjacentToEqualBlock(p_149646_1_,p_149646_2_,p_149646_3_,p_149646_4_,p_149646_5_,callbackInfo7);
@@ -180,9 +176,6 @@ public boolean shouldSideBeRendered(IBlockAccess p_149646_1_,int p_149646_2_,int
         }
         }
 
-@MixinMerged(mixin = "com.github.basdxz.leafculling.mixin.mixins.client.minecraft.BlockLeavesBaseHideSideAdjacentToEqualMixin",
-             priority = 1000,
-             sessionId = "f11ec6d0-e082-4f25-8c87-79e34d6c0765")
 private void handler$zzd000$hideSidesAdjacentToEqualBlock(IBlockAccess blockAccess,int otherXPos,int otherYPos,int otherZPos,int side,CallbackInfoReturnable<Boolean> cir){
         LeafCulling.handleHidingSidesAdjacentEqualLeaves(blockAccess,otherXPos,otherYPos,otherZPos,side,cir);
         }
@@ -244,6 +237,7 @@ public boolean shouldSideBeRendered(IBlockAccess par1IBlockAccess,int par2,int p
 ```
 
 Not extending the `BlockLeaves` or `BlockLeavesBase` class, such as in Chisel's `BlockLeaf` class:
+
 ![Chisel Leaves Class Hierarchy](chisel_leaves_class_hierarchy.png?raw=true "Class Hierarchy")
 
 In these scenarios, a custom compatibility patch is needed.
@@ -252,8 +246,8 @@ In these scenarios, a custom compatibility patch is needed.
 
 TODO: SCREENSHOT BEFORE/AFTER
 The Tinkers Construct ore berry bush is an interesting edge case. For a start, it is odd for it to
-extend `BlockLeavesBase` considering how different it is from the general leaf block.
-Secondly, the size changes as it grows, requiring a bit of extra logic for it to work correctly.
+extend `BlockLeavesBase` considering how different it is from the general leaf block. Secondly, the size changes as it
+grows, requiring a bit of extra logic for it to work correctly.
 
 The implemented solution can be found in
 the [ModCompat class](https://github.com/basdxz/LeafCulling/blob/95feaed779b8da52d29b0513e164f164a862d35c/src/main/java/com/github/basdxz/leafculling/ModCompat.java).
