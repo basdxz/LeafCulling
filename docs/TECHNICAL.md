@@ -9,8 +9,8 @@ Break down of the inner workings of Leaf Culling as of 2023-04-16.
 
 ## Entry Points
 
-- Forge Mod located in [LeafCulling.java](https://github.com/basdxz/LeafCulling/blob/95feaed779b8da52d29b0513e164f164a862d35c/src/main/java/com/github/basdxz/leafculling/LeafCulling.java): Used for initializing some compatibility classes at load time. 
-- SpongeMixins Plugin located in [MixinPlugin.java](https://github.com/basdxz/LeafCulling/blob/95feaed779b8da52d29b0513e164f164a862d35c/src/main/java/com/github/basdxz/leafculling/mixin/plugin/MixinPlugin.java): Used for the mixin patches.
+- [Forge Mod](https://github.com/basdxz/LeafCulling/blob/95feaed779b8da52d29b0513e164f164a862d35c/src/main/java/com/github/basdxz/leafculling/LeafCulling.java): Used for initializing some compatibility classes at load time. 
+- [Mixin Plugin](https://github.com/basdxz/LeafCulling/blob/95feaed779b8da52d29b0513e164f164a862d35c/src/main/java/com/github/basdxz/leafculling/mixin/plugin/MixinPlugin.java): Used for the mixin patches.
 
 ## Vanilla Behaviour
 
