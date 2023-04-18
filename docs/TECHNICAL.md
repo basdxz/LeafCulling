@@ -16,13 +16,13 @@ Break down of the inner workings of Leaf Culling as of 2023-04-16.
 
 ### Leaf Class Hierarchy
 
-![UML diagram showing an inheritance hierarchy. BlockOldLeaf and BlockNewLeaf extend BlockLeaves. BlockLeaves extends BlockLeavesBase. BlockLeavesBase extends Block.](leaf_class_hierarchy.png?raw=true "Class Hierarchy")
+![UML diagram showing an inheritance hierarchy. BlockOldLeaf and BlockNewLeaf extend BlockLeaves. BlockLeaves extends BlockLeavesBase. BlockLeavesBase extends Block.](leaf_class_hierarchy.png)
 
 Vanilla leaves all extend `BlockLeaves`, which confusingly is the only class that extends `BlockLeavesBase`. `BlockOldLeaf` is used for Oak, Spruce, Birch and Jungle leaves, while `BlockNewLeaf` is used for Acacia and Big Oak leaves.
 
 ### Leaf Metadata
 
-![Graphic showing order of the bits for leaf metadata, from MSB to LSB. Decay: 3, 2. Variation: 1, 0.](leaf_metadata.svg?raw=true "Metadata Structure")
+![Graphic showing order of the bits for leaf metadata, from MSB to LSB. Decay: 3, 2. Variation: 1, 0.](leaf_metadata.svg)
 
 While Minecraft does have 4 bits for it's metadata, allowing for 16 possible states of each block, each leaf block type can only represent 4 distinct variations. This is because half of the four bits are used to represent the leaf decay progress, leaving the remaining for variations.
 
@@ -80,7 +80,7 @@ public boolean shouldSideBeRendered(IBlockAccess blockAccess, int otherXPos, int
 
 ### Stained Glass Should Side be Rendered
 
-![UML diagram showing an inheritance hierarchy. BlockStainedGlass extends BlockBreakable. BlockBreakable extends Block.](stained_glass_class_hierarchy.png?raw=true "Class Hierarchy")
+![UML diagram showing an inheritance hierarchy. BlockStainedGlass extends BlockBreakable. BlockBreakable extends Block.](stained_glass_class_hierarchy.png)
 
 In contrast to the desired behaviour of having leaves act more like stained glass, which inherits it's method from extending `BlockBreakable`.
 
@@ -222,7 +222,7 @@ public boolean shouldSideBeRendered(IBlockAccess par1IBlockAccess, int par2, int
 
 Not extending the `BlockLeaves` or `BlockLeavesBase` class, such as in Chisel's `BlockLeaf` class:
 
-![UML diagram showing an inheritance hierarchy. BlockLeaf extends BlockCarvable. BlockCarvable extends Block and implements ICarvable. ICarvable extends ICTMBlock](chisel_leaves_class_hierarchy.png?raw=true "Class Hierarchy")
+![UML diagram showing an inheritance hierarchy. BlockLeaf extends BlockCarvable. BlockCarvable extends Block and implements ICarvable. ICarvable extends ICTMBlock](chisel_leaves_class_hierarchy.png)
 
 In these scenarios, a custom compatibility patch is needed.
 
