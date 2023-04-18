@@ -4,11 +4,13 @@ Break down of the inner workings of Leaf Culling as of 2023-04-16.
 
 ## Dependencies
 
-This mod depends on [FalsePatternLib](https://github.com/FalsePattern/FalsePatternLib) for the mixin plugin extensionlogic, alongside [SpongeMixins](https://github.com/SpongePowered/Mixin) to load the mixins used for injecting the patches.
+- [FalsePatternLib](https://github.com/FalsePattern/FalsePatternLib): For the mixin plugin extension logic.
+- [SpongeMixins](https://github.com/SpongePowered/Mixin): Mixins used for injecting the patches.
 
 ## Entry Points
 
-There are two entry points in the mod. A Forge Mod locatedin [LeafCulling.java](https://github.com/basdxz/LeafCulling/blob/95feaed779b8da52d29b0513e164f164a862d35c/src/main/java/com/github/basdxz/leafculling/LeafCulling.java),used for initializing some compatibility classes at load time. Additionally, a SpongeMixins Plugin one locatedin [MixinPlugin.java](https://github.com/basdxz/LeafCulling/blob/95feaed779b8da52d29b0513e164f164a862d35c/src/main/java/com/github/basdxz/leafculling/mixin/plugin/MixinPlugin.java)for the patches.
+- Forge Mod located in [LeafCulling.java](https://github.com/basdxz/LeafCulling/blob/95feaed779b8da52d29b0513e164f164a862d35c/src/main/java/com/github/basdxz/leafculling/LeafCulling.java): Used for initializing some compatibility classes at load time. 
+- SpongeMixins Plugin located in [MixinPlugin.java](https://github.com/basdxz/LeafCulling/blob/95feaed779b8da52d29b0513e164f164a862d35c/src/main/java/com/github/basdxz/leafculling/mixin/plugin/MixinPlugin.java): Used for the mixin patches.
 
 ## Vanilla Behaviour
 
@@ -16,17 +18,17 @@ There are two entry points in the mod. A Forge Mod locatedin [LeafCulling.java](
 
 ![Leaf Class Hierarchy](leaf_class_hierarchy.png?raw=true "Class Hierarchy")
 
-Vanilla leaves all extend `BlockLeaves`, which confusingly extends `BlockLeavesBase`.BlockOldLeaf` is used for Oak, Spruce, Birch and Jungle leaves, while `BlockNewLeaf` is used for Acacia and Big Oak leaves.
+Vanilla leaves all extend `BlockLeaves`, which confusingly is the only class that extends `BlockLeavesBase`. BlockOldLeaf` is used for Oak, Spruce, Birch and Jungle leaves, while `BlockNewLeaf` is used for Acacia and Big Oak leaves.
 
 ### Leaf Metadata
 
 ![Leaf Metadata Structure](leaf_metadata.svg?raw=true "Metadata Structure")
 
-While Minecraft does have 4 bits for it's metadata, allowing for 16 possible states of each block, each leaf block typecan only represent 4 distinct variations. This is because half of the four bits are used to represent the leaf decay progress, leaving the remaining for variations.
+While Minecraft does have 4 bits for it's metadata, allowing for 16 possible states of each block, each leaf block type can only represent 4 distinct variations. This is because half of the four bits are used to represent the leaf decay progress, leaving the remaining for variations.
 
 ### Should Side Be Rendered Signature
 
-Minecraft, like many other voxel games, has an optimization to hide internal faces of blocks. When a block is added tothe chunk mesh the following method from `Block` is called.
+Minecraft, like many other voxel games, has an optimization to hide internal faces of blocks. When a block is added to the chunk mesh the following method from `Block` is called.
 
 ```Java
 // As found when using MCP mappings
@@ -36,7 +38,11 @@ public boolean shouldSideBeRendered(IBlockAccess p_149646_1_, int p_149646_2_, i
 public boolean shouldSideBeRendered(IBlockAccess blockAccess, int otherXPos, int otherYPos, int otherZPos, int side);
 ```
 
-The method arguments are rather misleading in the provided Forge documentation, as such I have corrected them forclarity.`IBlockAccess blockAccess`: This is generally a `ChunkCache` object, which sources it's datafrom `WorldClient`.`int otherXPos, int otherYPos, int otherZPos`: Forge documentation has them documented as `x y z`,but they are meant to be the position of the other block, which this block is being compared against.`int side`: This isthe side of this block which is being checked, it is also the direction of the block provided in theposition.`boolean return`: True if the side should render, otherwise false.
+The method arguments are rather misleading in the provided Forge documentation, so I have corrected them for clarity.
+
+- `IBlockAccess blockAccess`: Generally a `ChunkCache` object, which sources it's data from `WorldClient`
+- `int otherXPos, int otherYPos, int otherZPos`: MCP has them documented as `x y z`, but they are meant to be the position of the other block, which this block is being compared against.
+- `int side`: This is the side of this block which is being checked, it is also the direction of the block provided in the position.`boolean return`: True if the side should render, otherwise false.
 
 ### Should Side Be Rendered in Leaves
 
@@ -79,7 +85,7 @@ In contrast to the desired behaviour of having leaves act more like stained glas
 
 TODO: SCREENSHOT
 
-Stained glass, which has a special case included in the `BlockBreakable` class, will instead check if the nearby blockis another stained glass with the same meta. If this the case, the side will not be rendered.
+Stained glass, which has a special case included in the `BlockBreakable` class, will instead check if the nearby block is another stained glass with the same meta. If this the case, the side will not be rendered.
 
 ```Java
 // As found when using MCP mappings
@@ -137,7 +143,7 @@ public boolean shouldSideBeRendered(IBlockAccess blockAccess, int otherXPos, int
 
 TODO: Screenshot
 TODO: Video
-With the implemented solution, the visuals produce the desired effect as seen above. With proper handling of decayingleaves.
+With the implemented solution, the visuals produce the desired effect as seen above. With proper handling of decaying leaves.
 
 ### Mixin Injection
 
@@ -164,7 +170,7 @@ private void handler$zzd000$hideSidesAdjacentToEqualBlock(IBlockAccess blockAcce
 
 ### New Should Side be Rendered Check
 
-The injection delegates across to a [method in the LeafCulling Class](https://github.com/basdxz/LeafCulling/blob/95feaed779b8da52d29b0513e164f164a862d35c/src/main/java/com/github/basdxz/leafculling/LeafCulling.java#L28). Which performs much the same checks as the stained glass. Comparing this block to the other block, including the metadata. With the only difference being that the two most significant bits of the leaves, which are used to represent the decay, are masked off.
+The injection delegates across to a [method in the LeafCulling Class](https://github.com/basdxz/LeafCulling/blob/95feaed779b8da52d29b0513e164f164a862d35c/src/main/java/com/github/basdxz/leafculling/LeafCulling.java#L28), which performs much the same checks as the stained glass. Comparing this block to the other block, including the metadata, with the only difference being that the two most significant bits of the leaves, which are used to represent the decay, are masked off.
 
 ### Why not force 'Fast Graphics' on the side check instead?
 
