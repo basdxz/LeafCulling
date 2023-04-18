@@ -42,7 +42,8 @@ The method arguments are rather misleading in the provided Forge documentation, 
 
 - `IBlockAccess blockAccess`: Generally a `ChunkCache` object, which sources it's data from `WorldClient`
 - `int otherXPos, int otherYPos, int otherZPos`: MCP has them documented as `x y z`, but they are meant to be the position of the other block, which this block is being compared against.
-- `int side`: This is the side of this block which is being checked, it is also the direction of the block provided in the position.`boolean return`: True if the side should render, otherwise false.
+- `int side`: This is the side of this block which is being checked, it is also the direction of the block provided in the position.
+- `boolean return`: True if the side should render, otherwise false.
 
 ### Should Side Be Rendered in Leaves
 
@@ -57,7 +58,7 @@ public boolean shouldSideBeRendered(IBlockAccess blockAccess, int otherXPos, int
     return !this.field_150121_P && block == this ? false : super.shouldSideBeRendered(blockAccess, otherXPos, otherYPos, otherZPos, side);
 }
 
-// Cleaned up for clarity
+// Cleaned up for clarity.
 public boolean shouldSideBeRendered(IBlockAccess blockAccess, int otherXPos, int otherYPos, int otherZPos, int side) {
     // Delegates to the super method, returning false if it does.  
     if (!super.shouldSideBeRendered(blockAccess, otherXPos, otherYPos, otherZPos, side))
@@ -88,7 +89,7 @@ TODO: SCREENSHOT
 Stained glass, which has a special case included in the `BlockBreakable` class, will instead check if the nearby block is another stained glass with the same meta. If this the case, the side will not be rendered.
 
 ```Java
-// As found when using MCP mappings
+// As found when using MCP mappings.
 public boolean shouldSideBeRendered(IBlockAccess blockAccess, int otherXPos, int otherYPos, int otherZPos, int side) {
     Block block = blockAccess.getBlock(otherXPos, otherYPos, otherZPos);
 
@@ -105,7 +106,7 @@ public boolean shouldSideBeRendered(IBlockAccess blockAccess, int otherXPos, int
     return !this.field_149996_a && block == this ? false : super.shouldSideBeRendered(blockAccess, otherXPos, otherYPos, otherZPos, side);
 }
 
-// Cleaned up for clarity
+// Cleaned up for clarity.
 public boolean shouldSideBeRendered(IBlockAccess blockAccess, int otherXPos, int otherYPos, int otherZPos, int side) {
     // Gets the other block.
     Block otherBlock = blockAccess.getBlock(otherXPos, otherYPos, otherZPos);
@@ -120,7 +121,7 @@ public boolean shouldSideBeRendered(IBlockAccess blockAccess, int otherXPos, int
 
         // If the metadata doesn't match, render the side.
         if (thisBlockM etadata != otherBlockMetadata)
-        return true;
+            return true;
 
         // If the block is equal to this block (in this case, both meta and object) render it.
         if (otherBlock == this)
